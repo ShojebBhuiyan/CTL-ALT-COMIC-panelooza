@@ -55,28 +55,28 @@ const config = {
         },
 
         red: {
-          DEFAULT: "var(--blush)",
-          secondary: "var(--burnt-sienna)",
+          DEFAULT: "hsl(var(--blush))",
+          secondary: "hsl(var(--burnt-sienna))",
         },
         green: {
-          DEFAULT: "var(--celadon)",
-          secondary: "var(--vista-blue)",
+          DEFAULT: "hsl(var(--celadon))",
+          secondary: "hsl(var(--vista-blue))",
         },
         magenta: {
-          DEFAULT: "var(--brilliant-rose)",
-          secondary: "var(--indian-red)",
+          DEFAULT: "hsl(var(--brilliant-rose))",
+          secondary: "hsl(var(--indian-red))",
         },
         violet: {
-          DEFAULT: "var(--mauve)",
-          secondary: "var(--african-violet)",
+          DEFAULT: "hsl(var(--mauve))",
+          secondary: "hsl(var(--african-violet))",
         },
         yellow: {
-          DEFAULT: "var(--jasmine)",
-          secondary: "var(--orange-peel)",
+          DEFAULT: "hsl(var(--jasmine))",
+          secondary: "hsl(var(--orange-peel))",
         },
         blue: {
-          DEFAULT: "var(--vivid-sky-blue)",
-          secondary: "var(--space-cadet)",
+          DEFAULT: "hsl(var(--vivid-sky-blue))",
+          secondary: "hsl(var(--space-cadet))",
         },
       },
       borderRadius: {

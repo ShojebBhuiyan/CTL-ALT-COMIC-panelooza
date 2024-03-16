@@ -25,20 +25,20 @@
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
 
-    --blush: #e45070;
-    --celadon: #9be7a9;
-    --brilliant-rose: #f1549e;
-    --mauve: #cdaafa;
-    --jasmine: #ffd682;
+    --blush: 347 73% 60%;
+    --celadon: 131 61% 76%;
+    --brilliant-rose: 332 85% 64%;
+    --mauve: 266 89% 82%;
+    --jasmine: 40 100% 75%;
 
-    --indian-red: #e35353;
-    --vista-blue: #7994c0;
-    --burnt-sienna: #ee6f43;
-    --african-violet: #af84ba;
-    --orange-peel: #fca139;
+    --indian-red: 0 72% 61%;
+    --vista-blue: 217 36% 61%;
+    --burnt-sienna: 15 83% 60%;
+    --african-violet: 288 28% 62%;
+    --orange-peel: 32 97% 61%;
 
-    --vivid-sky-blue: #1cd2f9;
-    --space-cadet: #1F254E;
+    --vivid-sky-blue: 191 95% 54%;
+    --space-cadet: 232 43% 21%;
   }
 
   .dark {
