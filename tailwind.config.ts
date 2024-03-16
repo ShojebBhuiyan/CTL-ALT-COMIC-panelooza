@@ -53,6 +53,31 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        red: {
+          DEFAULT: "var(--blush)",
+          secondary: "var(--burnt-sienna)",
+        },
+        green: {
+          DEFAULT: "var(--celadon)",
+          secondary: "var(--vista-blue)",
+        },
+        magenta: {
+          DEFAULT: "var(--brilliant-rose)",
+          secondary: "var(--indian-red)",
+        },
+        violet: {
+          DEFAULT: "var(--mauve)",
+          secondary: "var(--african-violet)",
+        },
+        yellow: {
+          DEFAULT: "var(--jasmine)",
+          secondary: "var(--orange-peel)",
+        },
+        blue: {
+          DEFAULT: "var(--vivid-sky-blue)",
+          secondary: "var(--space-cadet)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,6 +101,8 @@ const config = {
     },
     fontFamily: {
       sans: ["var(--font-sans)", ...fontFamily.sans],
+      syne: ["var(--font-syne)"],
+      karla: ["var(--font-karla)"],
     },
   },
   plugins: [require("tailwindcss-animate")],
