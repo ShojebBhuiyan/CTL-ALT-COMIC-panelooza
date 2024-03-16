@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <div className="w-full mt-auto">
-      <div className="py-4 px-12 bg-black text-white text-sm grid grid-cols-5 gap-1">
+      <div className="py-16 px-12 bg-black text-white text-sm grid grid-cols-5 gap-1">
         <div>
           <img src="/logo.png" alt="Logo" />
         </div>
