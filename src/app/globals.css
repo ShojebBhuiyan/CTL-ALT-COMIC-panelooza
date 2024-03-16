@@ -24,6 +24,21 @@
     --input: 220 13% 91%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
+
+    --blush: 347 73% 60%;
+    --celadon: 131 61% 76%;
+    --brilliant-rose: 332 85% 64%;
+    --mauve: 266 89% 82%;
+    --jasmine: 40 100% 75%;
+
+    --indian-red: 0 72% 61%;
+    --vista-blue: 217 36% 61%;
+    --burnt-sienna: 15 83% 60%;
+    --african-violet: 288 28% 62%;
+    --orange-peel: 32 97% 61%;
+
+    --vivid-sky-blue: 191 95% 54%;
+    --space-cadet: 232 43% 21%;
   }
 
   .dark {
