@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef , useContext } from 'react';
+import { ActiveCardContext } from '@/components/landing/ActiveCardContext';
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -12,7 +13,8 @@ export const StickyScroll = ({
     content?: React.ReactNode | any;
   }[];
 }) => {
-  const [activeCard, setActiveCard] = React.useState(0);
+  const { activeCard, setActiveCard } = useContext(ActiveCardContext);
+
   const ref = useRef<any>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -21,7 +23,10 @@ export const StickyScroll = ({
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
+    const cardsBreakpoints = content.map((_, index) => {
+      const factor = -2 * (1 - index / cardLength);
+      return index / (cardLength + factor);
+    });
     const closestBreakpointIndex = cardsBreakpoints.reduce(
       (acc, breakpoint, index) => {
         const distance = Math.abs(latest - breakpoint);
@@ -61,7 +66,7 @@ export const StickyScroll = ({
           />
           <div style={{ position: "relative", zIndex: 2 }}>
             {" "}
-            {card.content ?? null}
+            {card.content}
           </div>{" "}
         </motion.div>
       ))}

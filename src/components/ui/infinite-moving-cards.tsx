@@ -83,10 +83,7 @@ export const InfiniteMovingCards = ({
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden",
-        className
-      )}
+      className={cn("scroller relative z-20  max-w-7xl", className)}
     >
       <ul
         ref={scrollerRef}
@@ -98,7 +95,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-64 h-64 relative px-8 py-6 drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+            className="w-64  relative px-8 py-6 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]"
             style={{
               background: colors[Math.floor(Math.random() * colors.length)],
               padding: "10px",
@@ -112,7 +109,9 @@ export const InfiniteMovingCards = ({
                 alt={item.name}
                 className="w-full h-auto"
               />
-              <p className="mt-6 text-center">{item.name}</p>
+              <p className="mt-6 font-bold text-white text-center">
+                {item.name}
+              </p>
             </div>
           </li>
         ))}
