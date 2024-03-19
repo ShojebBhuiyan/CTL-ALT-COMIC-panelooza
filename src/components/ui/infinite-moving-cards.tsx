@@ -97,7 +97,7 @@ export const InfiniteMovingCards = ({
           <li
             className="w-64  relative px-8 py-6 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]"
             style={{
-              background: colors[Math.floor(Math.random() * colors.length)],
+              background: colors[idx % colors.length],
               padding: "10px",
               boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
             }}
