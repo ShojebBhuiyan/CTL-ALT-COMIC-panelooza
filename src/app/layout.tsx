@@ -39,7 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-black font-syne antialiased",
+          "min-h-screen bg-background font-syne antialiased",
           syne.variable,
           karla.variable,
           fontSans.variable
@@ -48,7 +48,7 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
