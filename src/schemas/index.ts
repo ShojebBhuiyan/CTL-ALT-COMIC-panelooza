@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-export const LoginSchema = z.object({
+export const SigninSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1, {
     message: "Password is required",
   }),
 });
 
-export const RegisterSchema = z.object({
+export const SignupSchema = z.object({
   email: z.string().email(),
   password: z
     .string()
@@ -17,14 +17,5 @@ export const RegisterSchema = z.object({
     .max(50),
   name: z.string().min(1, {
     message: "Name is required",
-  }),
-});
-
-export const KeySchema = z.object({
-  name: z.string().min(1, {
-    message: "Name is required",
-  }),
-  publicKey: z.string().min(1, {
-    message: "Public key is required",
   }),
 });
