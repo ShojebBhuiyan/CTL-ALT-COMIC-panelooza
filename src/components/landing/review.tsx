@@ -19,7 +19,7 @@ export function Review() {
   }, []);
 
   return (
-    <div className="px-16 py-10 h-[100vh]">
+    <div className="px-16 py-10 h-[100vh] text-black">
       <div
         className={
           activeCard === 5
@@ -49,15 +49,15 @@ export function Review() {
 }
 
 const positions = [
-  { top: "98px", left: "34px" },
-  { top: "144px", left: "224px" },
-  { top: "158px", left: "416px" },
-  { top: "28px", left: "444px" },
-  { top: "168px", left: "624px" },
+  { top: "98px", left: "24px" },
+  { top: "144px", left: "208px" },
+  { top: "158px", left: "406px" },
+  { top: "28px", left: "434px" },
+  { top: "168px", left: "634px" },
   { top: "20px", left: "774px" },
-  { top: "268px", left: "10px" },
-  { top: "308px", left: "234px" },
-  { top: "298px", left: "504px" },
+  { top: "268px", left: "40px" },
+  { top: "308px", left: "264px" },
+  { top: "298px", left: "494px" },
   { top: "298px", left: "754px" },
 ];
 

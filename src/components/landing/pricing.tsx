@@ -62,7 +62,7 @@ export function Pricing() {
   ];
 
   return (
-    <div className="px-16 py-10 h-[100vh]">
+    <div className="px-16 py-10 h-[100vh] text-black">
       <div
         className={
           activeCard === 6
