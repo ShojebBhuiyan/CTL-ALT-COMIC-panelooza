@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,7 +20,7 @@ import { signup } from "@/actions/auth/signup";
 import { useState, useTransition } from "react";
 import FormSuccess from "@/components/form/form-success";
 import { useRouter } from "next/navigation";
-import { CardWrapper } from "@/components/form/card-wrapper";
+import AuthCard from "./auth-card";
 
 export function SignupForm() {
   const [isPending, startTransition] = useTransition();
@@ -44,7 +45,7 @@ export function SignupForm() {
       signup(values).then((data) => {
         if (data.success) {
           setSuccess(data?.success);
-          router.push("/auth/login");
+          router.push("/auth/signin");
         } else {
           setError(data?.error);
         }
@@ -53,75 +54,85 @@ export function SignupForm() {
   }
 
   return (
-    <CardWrapper
-      headerLabel="Create an account"
-      backButtonLabel="Already have an account?"
+    <AuthCard
       backButtonHref="/auth/signin"
+      backButtonLabel="Already have an account?"
+      headerLabel="Sign Up"
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="John Doe"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="john.doe@example.com"
-                      type="email"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="******"
-                      type="password"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-3">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="Whimsy Doodlebottom"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  This is your public display name.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input
+                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="doodlebottom@yourmail.com"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="a hard password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Use at least one letter, one numeral, and seven characters.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {error && <FormError message={error} />}
           {success && <FormSuccess message={success} />}
-          <Button type="submit" className="w-full" disabled={isPending}>
-            Signup
-          </Button>
+          <div className="flex items-center justify-center">
+            <Button
+              type="submit"
+              className="w-1/3 bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(255,255,255,1)] text-black text-lg hover:bg-yellow"
+            >
+              Sign Up
+            </Button>
+          </div>
         </form>
       </Form>
-    </CardWrapper>
+    </AuthCard>
+
+
   );
 }

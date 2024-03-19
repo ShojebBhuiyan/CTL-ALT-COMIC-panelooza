@@ -4,8 +4,12 @@ import { SignupForm } from "@/components/auth/signup-form";
 
 export default function SignupPage() {
   return (
-    <div className="container h-[90vh] flex justify-center items-center">
-      <SignupForm />
+    <div
+      className="bg-yellow bg-auth bg-cover bg-no-repeat"
+    >
+      <div className="p-10 flex justify-center">
+        <SignupForm />
+      </div>
     </div>
   );
 }
