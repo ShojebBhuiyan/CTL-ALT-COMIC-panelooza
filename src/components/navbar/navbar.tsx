@@ -4,12 +4,12 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <nav className="container flex bg-black w-full justify-between items-center gap-4 md:gap-6">
-      <div className="flex gap-4 items-center">
+    <nav className="sticky top-0 z-50 w-full h-16 bg-black flex justify-between items-center text-white font-syne font-medium text-lg">
+      <div className="flex items-center space-x-6">
         <Link href={"/"}>
-          <Image src="/logo.png" alt="Panelooza" width={100} height={100} />
+          <Image src="/logo.jpg" alt="Panelooza" width={64} height={64} />
         </Link>
-        <ul className="flex justify-start space-x-4 text-white">
+        <ul className="flex space-x-4">
           <li>
             <Link href="#">Community</Link>
           </li>

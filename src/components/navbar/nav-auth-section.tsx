@@ -18,16 +18,19 @@ export default function NavAuthSection() {
       ) : (
         <div className="flex justify-end space-x-4">
           <Link href={`/auth/signin`}>
-            <Button variant="outline" className="w-[8rem] text-lg">
-              Signin
+            <Button
+              variant="outline"
+              className="w-[8rem] bg-blue text-black font-medium text-lg h-16 px-4 py-2 rounded-none hover:bg-blue-secondary"
+            >
+              Sign In
             </Button>
           </Link>
           <Link href={`/auth/signup`}>
             <Button
               variant="outline"
-              className="w-[8rem] text-lg text-primary border-primary border-2"
+              className="w-[8rem] bg-blue text-black font-medium text-lg h-16 px-4 py-2 rounded-none hover:bg-blue-secondary"
             >
-              Signup
+              Sign Up
             </Button>
           </Link>
         </div>
