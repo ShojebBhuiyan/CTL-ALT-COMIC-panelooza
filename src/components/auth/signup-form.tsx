@@ -15,17 +15,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import FormError from "@/components/form/form-error";
+import { useToast } from "@/components/ui/use-toast";
 import { signup } from "@/actions/auth/signup";
 import { useState, useTransition } from "react";
-import FormSuccess from "@/components/form/form-success";
 import { useRouter } from "next/navigation";
 import AuthCard from "./auth-card";
 
 export function SignupForm() {
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>();
-  const [success, setSuccess] = useState<string | undefined>();
+  const { toast } = useToast();
 
   const router = useRouter();
 
@@ -35,19 +33,25 @@ export function SignupForm() {
       email: "",
       password: "",
       name: "",
+      username: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof SignupSchema>) {
     startTransition(() => {
-      setError(undefined);
-      setSuccess(undefined);
       signup(values).then((data) => {
         if (data.success) {
-          setSuccess(data?.success);
+          toast({
+            title: data?.success,
+            description: "You can now log in to your account.",
+          });
           router.push("/auth/signin");
         } else {
-          setError(data?.error);
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: data?.error,
+          });
         }
       });
     });
@@ -70,12 +74,29 @@ export function SignupForm() {
                 <FormControl>
                   <Input
                     className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
-                    placeholder="Whimsy Doodlebottom"
+                    placeholder="Jalil Uddin"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input
+                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="WhimsyDoodlebottom"
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  This is how everyone will see you.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -119,9 +140,7 @@ export function SignupForm() {
               </FormItem>
             )}
           />
-          {error && <FormError message={error} />}
-          {success && <FormSuccess message={success} />}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center p-5">
             <Button
               type="submit"
               className="w-1/3 bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(255,255,255,1)] text-black text-lg hover:bg-yellow"
@@ -132,7 +151,5 @@ export function SignupForm() {
         </form>
       </Form>
     </AuthCard>
-
-
   );
 }
