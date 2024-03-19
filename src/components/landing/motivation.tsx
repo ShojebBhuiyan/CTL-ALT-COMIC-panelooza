@@ -45,7 +45,7 @@ export function Motivation() {
           <p className="text-2xl font-bold">
             Dont be a sad mangaka. Try our AI Comic Strip Generator today!
           </p>
-          <img src="/sad.png" alt="comic strip" className="h-32 w-32" />
+          <img src="images/sad.png" alt="comic strip" className="h-32 w-32" />
         </div>
       </div>
     </div>

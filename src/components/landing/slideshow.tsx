@@ -28,14 +28,14 @@ export function Slideshow() {
 const dummy = [
   {
     name: "Toon",
-    picture: "/toon.webp",
+    picture: "images/toon.webp",
   },
   {
     name: "Superhero",
-    picture: "/superhero.webp",
+    picture: "images/superhero.webp",
   },
   {
     name: "Manga",
-    picture: "/manga.webp",
+    picture: "images/manga.webp",
   },
 ];
