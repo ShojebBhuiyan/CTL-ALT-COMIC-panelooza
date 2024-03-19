@@ -114,6 +114,9 @@ const config = {
       syne: ["var(--font-syne)"],
       karla: ["var(--font-karla)"],
     },
+    backgroundImage: {
+      auth: "url('/images/auth-bg.jpg')",
+    },
   },
   plugins: [require("tailwindcss-animate"), addVariablesForColors],
 } satisfies Config;
