@@ -39,9 +39,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-syne antialiased",
-          syne.variable,
+          "min-h-screen bg-background font-karla antialiased",
           karla.variable,
+          syne.variable,
           fontSans.variable
         )}
       >
