@@ -1,6 +1,4 @@
-import { AlertTriangle } from "lucide-react";
-
-import { CardWrapper } from "@/components/form/card-wrapper";
+import { LuAlertTriangle } from "react-icons/lu";
 import AuthCard from "./auth-card";
 
 export const ErrorCard = () => {
@@ -11,7 +9,7 @@ export const ErrorCard = () => {
       backButtonLabel="Back to sign in"
     >
       <div className="w-full flex justify-center items-center">
-        <AlertTriangle className="text-destructive" />
+        <LuAlertTriangle className="text-destructive" />
       </div>
     </AuthCard>
   );
