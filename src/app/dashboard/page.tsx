@@ -1,5 +1,5 @@
 export default function DashboardPage() {
   return (
-    <div className="h-dvh">DashboardPage</div>
+    <div className="h-screen">DashboardPage</div>
   );
 }
