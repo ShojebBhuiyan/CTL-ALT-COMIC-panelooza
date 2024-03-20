@@ -43,7 +43,7 @@ export function SignupForm() {
         if (data.success) {
           toast({
             title: data?.success,
-            description: "You can now log in to your account.",
+            description: "You can now sign in to your account.",
           });
           router.push("/auth/signin");
         } else {
