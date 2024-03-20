@@ -93,6 +93,10 @@ export function SignupForm() {
                     className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="WhimsyDoodlebottom"
                     {...field}
+                    onChange={(event) => {
+                      event.target.value = event.target.value.replace(/\s/g, '-');
+                      field.onChange(event);
+                    }}
                   />
                 </FormControl>
                 <FormDescription>
