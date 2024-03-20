@@ -25,14 +25,16 @@ export default function ProfileOptions({
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="rounded-full w-fit">
+          <Button variant="ghost" className="rounded-full me-16 focus:ring-0">
             <Avatar>
               {imageUrl && <AvatarImage src={imageUrl} alt="avatar" />}
-              <AvatarFallback>{name[0]}</AvatarFallback>
+              <AvatarFallback className="bg-yellow border-2 border-black text-black text-2xl">
+                {name[0].toUpperCase()}
+              </AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
+        <DropdownMenuContent className="w-48 rounded-none bg-yellow text-black  font-syne">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>

@@ -15,7 +15,7 @@ export async function signup(
     return { error: "Invalid credentials!" };
   }
 
-  const { email, password, name } = validatedFields.data;
+  const { email, password, name, username } = validatedFields.data;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const existingUser = await getUserByEmail(email);
@@ -29,6 +29,7 @@ export async function signup(
       email,
       password: hashedPassword,
       name,
+      username,
     },
   });
 

@@ -16,7 +16,7 @@ export function Slideshow() {
             : "hidden"
         }
       >
-        <p className="font-syne font-bold text-4xl mt-2 mb-16">
+        <p className="font-syne font-bold text-black text-4xl mt-2 mb-16">
           Many styles to choose from
         </p>
         <InfiniteMovingCards items={dummy} direction="right" speed="normal" />

@@ -14,15 +14,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signin } from "@/actions/auth/signin";
-import FormError from "@/components/form/form-error";
+import { getSession } from "next-auth/react";
 import AuthCard from "./auth-card";
 
 export function SigninForm() {
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>();
+  const { toast } = useToast();
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
@@ -38,14 +39,16 @@ export function SigninForm() {
 
   function onSubmit(values: z.infer<typeof SigninSchema>) {
     startTransition(() => {
-      setError(undefined);
-
-      signin(values).then((data) => {
+      signin(values).then(async (data) => {
         if (data?.error) {
-          setError(data?.error);
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: data?.error,
+          });
         }
+        await getSession();
         router.push(callbackUrl || "/dashboard");
-        // router.refresh();
       });
     });
   }
@@ -93,8 +96,7 @@ export function SigninForm() {
               </FormItem>
             )}
           />
-          {error && <FormError message={error} />}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center p-5">
             <Button
               type="submit"
               className="w-1/3 bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(255,255,255,1)] text-black text-lg hover:bg-yellow"
