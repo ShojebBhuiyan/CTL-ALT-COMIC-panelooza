@@ -20,6 +20,7 @@ import { signup } from "@/actions/auth/signup";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import AuthCard from "./auth-card";
+import { replaceSpaceInString } from "@/lib/utils";
 
 export function SignupForm() {
   const [isPending, startTransition] = useTransition();
@@ -94,13 +95,15 @@ export function SignupForm() {
                     placeholder="WhimsyDoodlebottom"
                     {...field}
                     onChange={(event) => {
-                      event.target.value = event.target.value.replace(/\s/g, '-');
+                      event.target.value = replaceSpaceInString(
+                        event.target.value
+                      );
                       field.onChange(event);
                     }}
                   />
                 </FormControl>
                 <FormDescription>
-                  This is how everyone will see you.
+                  This is how everyone will see you. Don&apos;t use spaces.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -138,7 +141,7 @@ export function SignupForm() {
                   />
                 </FormControl>
                 <FormDescription>
-                  Use at least one letter, one numeral, and seven characters.
+                  Choose a strong password with at least 8 characters.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
