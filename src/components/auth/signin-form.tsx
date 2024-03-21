@@ -47,8 +47,8 @@ export function SigninForm() {
             description: data?.error,
           });
         }
-        await getSession();
-        router.push(callbackUrl || "/dashboard");
+        const session = await getSession();
+        session && router.push(callbackUrl || `/${session.user?.name!}`);
       });
     });
   }
@@ -69,7 +69,7 @@ export function SigninForm() {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="doodlebottom@yourmail.com"
                     {...field}
                   />
@@ -87,7 +87,7 @@ export function SigninForm() {
                 <FormControl>
                   <Input
                     type="password"
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="a hard password"
                     {...field}
                   />
