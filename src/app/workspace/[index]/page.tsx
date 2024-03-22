@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
+import Strip from "@/components/workspace/strip";
 import { FiUpload } from "react-icons/fi";
 import { LuSend } from "react-icons/lu";
 
@@ -41,13 +42,7 @@ export default function Canvas() {
           <button className="bg-black text-white px-4 py-2">Export</button>
           <button className="bg-black text-white px-4 py-2">Save</button>
         </div>
-        <div className="bg-white grid grid-cols-2 gap-4 flex-grow">
-          <div className="h-32 border-2 border-black"></div>
-          <div className="h-32 border-2 border-black"></div>
-          <div className="h-32 border-2 border-black col-span-2"></div>
-          <div className="h-32 border-2 border-black"></div>
-          <div className="h-32 border-2 border-black"></div>
-        </div>
+        <Strip />
         <div className="mt-10 relative">
           <Textarea
             className="border-2 rounded-none pr-10"
