@@ -10,11 +10,13 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="bg-white p-16 grid md:grid-cols-4 sm:grid-cols-1 gap-x-12 gap-y-2">
-      <CreateProjectCard />
-      {workspaces.map((workspace, index) => (
-        <ProjectCard key={index} workspace={workspace} index={index} />
-      ))}
+    <div className="w-full bg-white">
+      <div className="container flex flex-wrap py-8 gap-x-8 gap-y-4">
+        <CreateProjectCard />
+        {workspaces.map((workspace, index) => (
+          <ProjectCard key={index} workspace={workspace} index={index} />
+        ))}
+      </div>
     </div>
   );
 }
