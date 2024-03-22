@@ -48,7 +48,7 @@ export function SigninForm() {
           });
         }
         const session = await getSession();
-        session && router.push(callbackUrl || `/${session.user?.name!}`);
+        session && router.push(callbackUrl || `/${session.user?.username!}`);
       });
     });
   }
