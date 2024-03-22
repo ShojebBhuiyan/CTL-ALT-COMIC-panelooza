@@ -8,7 +8,7 @@ export default function Workspace() {
   });
 
   return (
-    <div className="bg-white p-16 flex flex-wrap justify-between space-y-1">
+    <div className="bg-white p-16 grid grid-cols-3 gap-x-12 space-y-2">
       <CreateProjectCard />
       {workspaces.map((workspace, index) => (
         <ProjectCard key={index} workspace={workspace} index={index} />
