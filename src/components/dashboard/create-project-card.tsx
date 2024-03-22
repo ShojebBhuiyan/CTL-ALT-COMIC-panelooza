@@ -35,11 +35,8 @@ export default function CreateProjectCard() {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button className="w-1/4 bg-red rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow">
-          Cancel
-        </Button>
-        <Button className="w-1/4 bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow">
+      <CardFooter>
+        <Button className="w-full bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow">
           Create
         </Button>
       </CardFooter>

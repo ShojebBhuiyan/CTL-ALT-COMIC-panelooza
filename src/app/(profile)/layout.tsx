@@ -12,10 +12,10 @@ export default function Layout({
   const [activeMenu, setActiveMenu] = useState("Workspaces");
 
   return (
-    <div className="h-auto bg-yellow text-black flex">
+    <div className="relative h-auto bg-yellow text-black flex">
       <ActiveMenuContext.Provider value={{ activeMenu, setActiveMenu }}>
         <Sidebar />
-        <main className="flex-grow p-8">{children}</main>
+        <main className="p-8">{children}</main>
       </ActiveMenuContext.Provider>
     </div>
   );

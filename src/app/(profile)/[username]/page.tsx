@@ -10,7 +10,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="bg-white p-16 grid grid-cols-3 gap-x-12 space-y-2">
+    <div className="bg-white p-16 grid md:grid-cols-4 sm:grid-cols-1 gap-x-12 gap-y-2">
       <CreateProjectCard />
       {workspaces.map((workspace, index) => (
         <ProjectCard key={index} workspace={workspace} index={index} />
