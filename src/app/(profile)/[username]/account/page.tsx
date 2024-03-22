@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -13,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
-import { FiEdit, FiEdit2 } from "react-icons/fi";
+import { FiEdit2 } from "react-icons/fi";
 
 export default function Profile() {
   const { data: session } = useSession();
@@ -70,7 +72,9 @@ export default function Profile() {
             <CardHeader>
               <CardTitle>Account</CardTitle>
               <CardDescription>
-                {"Make changes to your account here. Click save when you\'re done."}
+                {
+                  "Make changes to your account here. Click save when you're done."
+                }
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -99,7 +103,9 @@ export default function Profile() {
             <CardHeader>
               <CardTitle>Password</CardTitle>
               <CardDescription>
-                {"Change your password here. After saving, you\'ll be logged out."}
+                {
+                  "Change your password here. After saving, you'll be logged out."
+                }
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
