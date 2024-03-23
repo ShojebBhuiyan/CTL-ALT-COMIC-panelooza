@@ -13,7 +13,7 @@ export default function NavAuthSection() {
       {session ? (
         <ProfileOptions
           imageUrl={session.user?.image!}
-          name={session.user?.name!}
+          name={session.user?.username!}
         />
       ) : (
         <div className="flex justify-end space-x-4">

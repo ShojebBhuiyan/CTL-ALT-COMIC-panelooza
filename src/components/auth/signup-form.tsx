@@ -74,7 +74,7 @@ export function SignupForm() {
                 <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="Jalil Uddin"
                     {...field}
                   />
@@ -91,7 +91,7 @@ export function SignupForm() {
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="WhimsyDoodlebottom"
                     {...field}
                     onChange={(event) => {
@@ -117,7 +117,7 @@ export function SignupForm() {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="doodlebottom@yourmail.com"
                     {...field}
                   />
@@ -135,7 +135,7 @@ export function SignupForm() {
                 <FormControl>
                   <Input
                     type="password"
-                    className="rounded-none bg-white text-black font-medium border-none focus:ring-0"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
                     placeholder="a hard password"
                     {...field}
                   />

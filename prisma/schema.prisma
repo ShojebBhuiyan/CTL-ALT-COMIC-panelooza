@@ -35,10 +35,39 @@ model Account {
 model User {
   id            String    @id @default(cuid())
   name          String
-  username      String   @unique
-  email         String   @unique
+  username      String    @unique
+  email         String    @unique
   emailVerified DateTime?
   image         String?
   password      String?
   accounts      Account[]
+  styles        Style[]
+  Projects      Project[]
+}
+
+model Style {
+  id         String   @id @default(cuid())
+  name       String
+  userId     String
+  imagePaths String[]
+  thumbnail  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([name, userId])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([name, userId])
 }

@@ -1,7 +1,12 @@
 import NextAuth from "next-auth";
+import { User as NextAuthUser } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
+
+interface User extends NextAuthUser {
+  username: string;
+}
 
 export const {
   handlers: { GET, POST },
@@ -25,6 +30,7 @@ export const {
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
+        session.user.username = token.username as string;
       }
 
       return session;
@@ -33,7 +39,9 @@ export const {
       if (!token.sub) return token;
 
       if (user) {
-        token.sub = user.id;
+        const userWithUsername = user as User;
+        token.sub = userWithUsername.id;
+        token.username = userWithUsername.username;
       }
 
       return token;
