@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   return (
     <div className="w-full bg-white">
-      <div className="container flex flex-wrap py-8 gap-x-8 gap-y-4">
+      <div className="container flex flex-wrap justify-start gap-x-8 py-8 gap-y-4">
         <CreateProjectCard />
         {workspaces.map((workspace, index) => (
           <ProjectCard key={index} workspace={workspace} index={index} />
