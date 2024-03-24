@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import bcrypt from "bcryptjs";
 
 export async function getUserByEmail(email: string) {
   try {
@@ -23,6 +24,89 @@ export async function getUserById(id: string) {
     });
 
     return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateName(id: string, name: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateUsername(id: string, username: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        username,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateEmail(id: string, email: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        email,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updatePassword(id: string, password: string) {
+  try {
+    const existing = await db.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        password: true,
+      },
+    });
+
+    const passwordsMatch = await bcrypt.compare(password, existing?.password!);
+
+    if (passwordsMatch) {
+      const user = await db.user.update({
+        where: {
+          id,
+        },
+        data: {
+          password,
+        },
+      });
+
+      return user;
+    } else {
+      return { error: "Wrong current password!" };
+    }
   } catch (error) {
     console.error(error);
   }
