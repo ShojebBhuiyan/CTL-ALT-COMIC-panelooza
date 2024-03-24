@@ -80,9 +80,9 @@ export async function updateEmail(id: string, email: string) {
   }
 }
 
-export async function updatePassword(id: string, password: string) {
+export async function checkPassword(id: string, password: string) {
   try {
-    const existing = await db.user.findUnique({
+    const user = await db.user.findUnique({
       where: {
         id,
       },
@@ -91,22 +91,25 @@ export async function updatePassword(id: string, password: string) {
       },
     });
 
-    const passwordsMatch = await bcrypt.compare(password, existing?.password!);
+    const passwordsMatch = await bcrypt.compare(password, user?.password!);
+    return passwordsMatch;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-    if (passwordsMatch) {
-      const user = await db.user.update({
-        where: {
-          id,
-        },
-        data: {
-          password,
-        },
-      });
+export async function updatePassword(id: string, password: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password,
+      },
+    });
 
-      return user;
-    } else {
-      return { error: "Wrong current password!" };
-    }
+    return user;
   } catch (error) {
     console.error(error);
   }
