@@ -13,6 +13,7 @@ export const {
   auth,
   signIn,
   signOut,
+  unstable_update,
 } = NextAuth({
   pages: {
     signIn: "/auth/signin",
@@ -47,14 +48,9 @@ export const {
       }
 
       if (trigger === "update") {
-        console.log("inside update trigger");
-        console.log("before token update: ", token);
-        console.log(session);
         token.name = session.name;
         token.username = session.username;
         token.email = session.email;
-        console.log("after token update: ", token);
-        // console.log;
       }
 
       return token;

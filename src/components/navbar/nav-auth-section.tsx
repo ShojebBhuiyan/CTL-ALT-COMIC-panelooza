@@ -8,8 +8,6 @@ import ProfileOptions from "./profile-options";
 export default function NavAuthSection() {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <>
       {session ? (

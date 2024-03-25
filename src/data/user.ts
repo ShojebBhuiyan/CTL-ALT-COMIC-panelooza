@@ -123,15 +123,16 @@ export async function checkPassword(id: string, password: string) {
 
 export async function updatePassword(id: string, password: string) {
   try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await db.user.update({
       where: {
         id,
       },
       data: {
-        password,
+        password: hashedPassword,
       },
     });
-
     return user;
   } catch (error) {
     console.error(error);

@@ -39,7 +39,7 @@ export default function PasswordSettings({ id }: PasswordSettingsProps) {
 
   function onSubmit(values: z.infer<typeof PasswordSchema>) {
     startTransition(() => {
-      changePassword(id, values.newPassword)
+      changePassword(id, values.currentPassword, values.newPassword)
         .then(() => {
           toast({
             variant: "default",

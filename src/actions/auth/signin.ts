@@ -6,7 +6,10 @@ import { SigninSchema } from "@/schemas";
 import { AuthError } from "next-auth";
 import { z } from "zod";
 
-export async function signin(values: z.infer<typeof SigninSchema>, callbackUrl?: string) {
+export async function signin(
+  values: z.infer<typeof SigninSchema>,
+  callbackUrl?: string
+) {
   const validatedFields = SigninSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -21,7 +24,6 @@ export async function signin(values: z.infer<typeof SigninSchema>, callbackUrl?:
       password,
       redirectTo: callbackUrl || `localhost:3000/${DEFAULT_SIGNIN_REDIRECT}`,
     });
-    console.log("Success!");
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
