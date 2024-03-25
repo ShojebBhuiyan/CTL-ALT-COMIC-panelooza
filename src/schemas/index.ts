@@ -58,3 +58,10 @@ export const AccountSchema = z.object({
   }),
   email: z.string().email(),
 });
+
+export const ProjectSchema = z.object({
+  name: z.string().min(1, {
+    message: "Name is required",
+  }),
+  description: z.string().min(1).optional(),
+});

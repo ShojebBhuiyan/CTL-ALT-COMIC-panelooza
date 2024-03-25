@@ -1,45 +1,131 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ProjectSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useToast } from "../ui/use-toast";
+import { useTransition } from "react";
+import { createNewProject } from "@/actions/project/create-new-project";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { Project } from "@prisma/client";
+import { revalidateTag } from "next/cache";
 
-export default function CreateProjectCard() {
+interface CreateProjectCardProps {
+  userId: string;
+  // existingProjects: Project[];
+}
+
+export default function CreateProjectCard({
+  userId,
+}: // existingProjects,
+CreateProjectCardProps) {
+  const [isPending, startTransition] = useTransition();
+
+  const { toast } = useToast();
+
+  const form = useForm<z.infer<typeof ProjectSchema>>({
+    resolver: zodResolver(ProjectSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof ProjectSchema>) {
+    startTransition(() => {
+      // Create project
+      createNewProject(values.name, userId, values.description)
+        .then((project) => {
+          if (project) {
+            toast({
+              variant: "default",
+              title: "Project created",
+              description: "Your project has been created successfully.",
+            });
+          } else {
+            toast({
+              variant: "destructive",
+              title: "Uh oh! Something went wrong.",
+              description: "Please try again.",
+            });
+          }
+        })
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "Please try again.",
+          });
+        });
+    });
+  }
+
   return (
     <Card className="w-[300px] h-[270px] rounded-none border-2 bg-violet text-black">
       <CardHeader>
         <CardTitle>Add New</CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                className="bg-white"
-                id="name"
-                placeholder="Name of your project"
-              />
-              <Label htmlFor="description">Description</Label>
-              <Input
-                className="bg-white"
-                id="description"
-                placeholder="Description of your project"
-              />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-white"
+                      placeholder="Name of your project"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-white"
+                      placeholder="Description of your project"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="py-3">
+              <Button
+                disabled={isPending}
+                type="submit"
+                className="w-full bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow"
+              >
+                Create
+              </Button>
             </div>
-          </div>
-        </form>
+          </form>
+        </Form>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow">
-          Create
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
