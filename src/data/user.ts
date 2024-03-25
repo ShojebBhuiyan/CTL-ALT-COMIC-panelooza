@@ -80,6 +80,29 @@ export async function updateEmail(id: string, email: string) {
   }
 }
 
+export async function updateProfile(
+  id: string,
+  name: string,
+  username: string,
+  email: string
+) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        username,
+        email,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function checkPassword(id: string, password: string) {
   try {
     const user = await db.user.findUnique({

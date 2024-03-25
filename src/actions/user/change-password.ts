@@ -9,8 +9,6 @@ export async function changePassword(id: string, password: string) {
     const user = updatePassword(id, password);
     return user;
   } else {
-    return {
-      error: "Password does not match",
-    };
+    throw new Error("Wrong current password!");
   }
 }
