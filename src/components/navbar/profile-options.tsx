@@ -49,7 +49,7 @@ export default function ProfileOptions({
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={`/settings`} className="w-full">
+              <Link href={`/${name}/account`} className="w-full">
                 Settings
               </Link>
             </DropdownMenuItem>
