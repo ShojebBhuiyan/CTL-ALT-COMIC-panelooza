@@ -1,6 +1,6 @@
-import Link from "next/link";
 import NavAuthSection from "@/components/navbar/nav-auth-section";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Navbar() {
   return (

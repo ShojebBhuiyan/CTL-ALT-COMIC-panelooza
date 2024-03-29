@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 import { FiXCircle } from "react-icons/fi";
-import { BackButton } from './back-button';
+import { BackButton } from "./back-button";
 
 interface AuthCardProps {
   children: React.ReactNode;
@@ -10,7 +10,12 @@ interface AuthCardProps {
   backButtonHref: string;
 }
 
-export default function AuthCard({ children, headerLabel, backButtonLabel, backButtonHref }: AuthCardProps) {
+export default function AuthCard({
+  children,
+  headerLabel,
+  backButtonLabel,
+  backButtonHref,
+}: AuthCardProps) {
   return (
     <div className="px-10 py-8 bg-black w-1/3 h-fit text-yellow">
       <div className="flex justify-between items-center w-full">

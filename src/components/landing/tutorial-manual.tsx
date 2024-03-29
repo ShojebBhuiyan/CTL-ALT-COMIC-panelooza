@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext } from "react";
-import { ActiveCardContext } from "./ActiveCardContext";
 import { LuGem, LuPalette, LuWrench } from "react-icons/lu";
+import { ActiveCardContext } from "./ActiveCardContext";
 
 export function TutorialManual() {
   const { activeCard } = useContext(ActiveCardContext);

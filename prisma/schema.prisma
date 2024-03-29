@@ -42,28 +42,35 @@ model User {
   password      String?
   accounts      Account[]
   styles        Style[]
-  Projects      Project[]
+  projects      Project[]
 }
 
 model Style {
-  id         String   @id @default(cuid())
-  name       String
-  userId     String
-  imagePaths String[]
-  thumbnail  String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id             String   @id @default(cuid())
+  userId         String
+  thumbnail      String
+  label          String
+  family         String?
+  color          String?
+  llmPrompt      String?
+  imagePrompt    String[]
+  negativePrompt String[]
+  isDefault      Boolean  @default(true)
+  imagePaths     String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id])
 
-  @@unique([name, userId])
+  @@unique([label, userId])
 }
 
 model Project {
   id          String   @id @default(cuid())
+  userId      String
   name        String
   description String?
-  userId      String
+  thumbnail   String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

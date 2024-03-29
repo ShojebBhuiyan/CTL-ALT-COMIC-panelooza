@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Select,
   SelectContent,
@@ -8,13 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 import {
-  FiGlobe,
   FiDownloadCloud,
-  FiTwitter,
   FiFacebook,
-  FiYoutube,
+  FiGlobe,
   FiLinkedin,
+  FiTwitter,
+  FiYoutube,
 } from "react-icons/fi";
 
 export function Footer() {

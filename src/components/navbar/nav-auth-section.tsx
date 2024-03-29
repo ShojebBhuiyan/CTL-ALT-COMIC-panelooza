@@ -1,7 +1,7 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import ProfileOptions from "./profile-options";
 

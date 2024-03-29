@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext } from "react";
+import { LuLightbulb, LuPaintbrush, LuSparkles } from "react-icons/lu";
 import { ActiveCardContext } from "./ActiveCardContext";
-import { LuPaintbrush, LuLightbulb, LuSparkles } from "react-icons/lu";
 
 export function TutorialAi() {
   const { activeCard } = useContext(ActiveCardContext);

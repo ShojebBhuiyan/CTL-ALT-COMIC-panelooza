@@ -107,7 +107,7 @@ export const InfiniteMovingCards = ({
               <img
                 src={item.picture}
                 alt={item.name}
-                className="w-full h-auto"
+                className="w-64 h-64 object-cover"
               />
               <p className="mt-6 font-bold text-white text-center">
                 {item.name}

@@ -17,8 +17,9 @@ export default async function Profile({
   return (
     <div className="bg-white p-16 flex justify-between gap-16">
       <ImageHandler
+        id={session?.user.id!}
+        username={session?.user.username!}
         imageUrl={session?.user.image!}
-        name={session?.user.username!}
       />
       <AccountController
         id={session?.user.id!}

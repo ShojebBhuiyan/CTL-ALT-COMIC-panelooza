@@ -1,10 +1,10 @@
 "use server";
 
-import { SignupSchema } from "@/schemas";
-import { z } from "zod";
-import bcrypt from "bcryptjs";
 import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
+import { SignupSchema } from "@/schemas";
+import bcrypt from "bcryptjs";
+import { z } from "zod";
 
 export async function signup(
   values: z.infer<typeof SignupSchema>

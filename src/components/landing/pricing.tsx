@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext } from "react";
-import { ActiveCardContext } from "./ActiveCardContext";
 import { FiCheck, FiX } from "react-icons/fi";
+import { ActiveCardContext } from "./ActiveCardContext";
 
 const PlanCard = ({
   plan,

@@ -1,8 +1,9 @@
 "use client";
 
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { useContext } from "react";
 import { ActiveCardContext } from "./ActiveCardContext";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { PresetName, nonRandomPresets, presets } from "@/app/engine/presets";
 
 export function Slideshow() {
   const { activeCard } = useContext(ActiveCardContext);
@@ -19,23 +20,15 @@ export function Slideshow() {
         <p className="font-syne font-bold text-black text-4xl mt-2 mb-16">
           Many styles to choose from
         </p>
-        <InfiniteMovingCards items={dummy} direction="right" speed="normal" />
+        <InfiniteMovingCards
+          items={nonRandomPresets.map((key) => ({
+            name: presets[key].label,
+            picture: presets[key].thumbnail,
+          }))}
+          direction="right"
+          speed="normal"
+        />
       </div>
     </div>
   );
 }
-
-const dummy = [
-  {
-    name: "Toon",
-    picture: "images/toon.webp",
-  },
-  {
-    name: "Superhero",
-    picture: "images/superhero.webp",
-  },
-  {
-    name: "Manga",
-    picture: "images/manga.webp",
-  },
-];
