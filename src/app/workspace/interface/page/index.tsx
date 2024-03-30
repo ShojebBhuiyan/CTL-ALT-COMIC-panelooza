@@ -37,12 +37,13 @@ export function Page({ page }: { page: number }) {
   return (
     <div
       ref={pageRef}
-      className={cn(`w-full`, `print:w-screen`, `print:break-after-all`)}
+      className={cn(`w-full`, `print:w-screen`, `print:h-fit`, `print:absolute`, `print:left-0`)}
       style={{
         padding: `${Math.round((zoomLevel / 100) * 16)}px`,
       }}
     >
       <div
+        id="page"
         className={cn(
           aspectRatio,
           `transition-all duration-100 ease-in-out`,

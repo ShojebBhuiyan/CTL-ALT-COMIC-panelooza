@@ -17,7 +17,7 @@ export default function Page({
   setDraftPreset: (preset: PresetName) => void;
 }) {
   return (
-    <div className="min-w-fit h-screen bg-gray-200 p-4 flex flex-col overflow-y-auto">
+    <div className="min-w-fit h-screen bg-gray-200 p-4 flex flex-col overflow-y-auto print:hidden">
       <p className="text-lg text-center font-bold mb-4">Styles</p>
       <button className="bg-black text-white px-4 py-2 mb-4">
         <FiUpload className="inline-block me-2" />

@@ -7,7 +7,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import { Textarea } from "@/components/ui/textarea";
@@ -48,32 +48,30 @@ export function EditModal({
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] text-stone-800">
+      <DialogContent className="bg-green-secondary rounded-none border-2 text-black">
         <DialogHeader>
-          <DialogDescription className="w-full text-center text-lg font-bold text-stone-800">
-            Edit Prompt
+          <DialogDescription className="w-full text-center text-xl font-bold text-black">
+            Finetune Prompt
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-row flex-grow w-full">
-          <Textarea
-            placeholder="Story"
-            rows={10}
-            className="w-full bg-neutral-300 text-neutral-800 dark:bg-neutral-300 dark:text-neutral-800 rounded-r-none"
-            onChange={(e) => {
-              setDraftPrompt(e.target.value);
-            }}
-            onKeyDown={({ key }) => {
-              if (key === "Enter") {
-                handleSubmit();
-              }
-            }}
-            value={draftPrompt}
-          />
-        </div>
+        <Textarea
+          placeholder="Story"
+          rows={10}
+          className="w-full bg-white text-black rounded-none"
+          onChange={(e) => {
+            setDraftPrompt(e.target.value);
+          }}
+          onKeyDown={({ key }) => {
+            if (key === "Enter") {
+              handleSubmit();
+            }
+          }}
+          value={draftPrompt}
+        />
         <DialogFooter>
           <Button
             type="button"
-            variant="outline"
+            className="bg-red rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow"
             onClick={() => {
               setOpen(false);
               setDraftPrompt(existingPrompt);
@@ -83,6 +81,7 @@ export function EditModal({
           </Button>
           <Button
             type="submit"
+            className="bg-green rounded-none drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-black hover:bg-yellow"
             onClick={() => handleSubmit()}
             disabled={!draftPrompt.length}
           >

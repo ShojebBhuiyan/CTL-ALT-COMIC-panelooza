@@ -10,7 +10,7 @@ export function Zoom() {
   return (
     <div
       className={cn(
-        `flex flex-col items-center mr-12 mt-28`,
+        `flex flex-col items-center mr-12 mt-28 print:hidden`,
         `animation-all duration-300 ease-in-out`,
         isGeneratingStory ? `scale-0 opacity-0` : ``
       )}
