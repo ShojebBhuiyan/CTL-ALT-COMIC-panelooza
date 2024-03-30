@@ -9,6 +9,11 @@ export function SharePopup({
   isOpen: boolean;
   setOpen: (open: boolean) => void;
 }) {
+  let url = "";
+  if (typeof window !== "undefined") {
+    url = window.location.href;
+  }
+
   return (
     <Dialog
       open={isOpen}
@@ -49,7 +54,7 @@ export function SharePopup({
           <p className="text-nowrap">Or copy link</p>
           <Input
             type="text"
-            value={window.location.href}
+            value={url}
             className="w-full border-2 text-sm bg-white ms-2"
           />
           <button className="h-10 text-white px-4 py-1 bg-blue-secondary hover:bg-green-secondary">

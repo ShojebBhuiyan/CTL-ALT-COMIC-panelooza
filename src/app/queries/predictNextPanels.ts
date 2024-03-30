@@ -5,7 +5,7 @@ import { dirtyGeneratedPanelsParser } from "@/lib/dirtyGeneratedPanelsParser";
 import { sleep } from "@/lib/sleep";
 import { GeneratedPanel } from "@/types";
 import { Preset } from "../engine/presets";
-import { predict } from "./predict";
+import { predictWithOpenAI } from "./predictWithOpenAI";
 
 export const predictNextPanels = async ({
   preset,
@@ -61,7 +61,7 @@ export const predictNextPanels = async ({
   const nbMaxNewTokens = nbPanelsToGenerate * nbTokensPerPanel;
 
   try {
-    result = `${await predict(query, nbMaxNewTokens)}`.trim();
+    result = `${await predictWithOpenAI(query, nbMaxNewTokens)}`.trim();
     console.log("LLM result (1st trial):", result);
     if (!result.length) {
       throw new Error("empty result on 1st trial!");
@@ -70,7 +70,7 @@ export const predictNextPanels = async ({
     await sleep(2000);
 
     try {
-      result = `${await predict(query + " \n ", nbMaxNewTokens)}`.trim();
+      result = `${await predictWithOpenAI(query + " \n ", nbMaxNewTokens)}`.trim();
       console.log("LLM result (2nd trial):", result);
       if (!result.length) {
         throw new Error("empty result on 2nd trial!");

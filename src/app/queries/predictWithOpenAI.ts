@@ -3,7 +3,7 @@
 import type { ChatCompletionMessage } from "openai/resources/chat"
 import OpenAI from "openai"
 
-export async function predict(inputs: string, nbMaxNewTokens: number): Promise<string> {
+export const predictWithOpenAI = async function predict(inputs: string, nbMaxNewTokens: number): Promise<string> {
   const openaiApiKey = `${process.env.AUTH_OPENAI_API_KEY || ""}`
   const openaiApiBaseUrl = `${process.env.LLM_OPENAI_API_BASE_URL || "https://api.openai.com/v1"}`
   const openaiApiModel = `${process.env.LLM_OPENAI_API_MODEL || "gpt-3.5-turbo"}`
