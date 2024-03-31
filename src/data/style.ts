@@ -3,18 +3,33 @@ import { db } from "@/lib/db";
 export async function createStyle(
   userId: string,
   label: string,
-  thumbnail: string
+  thumbnail: string,
+  family: string,
+  color: string,
+  llmPrompt: string,
+  imagePrompt: string[],
+  negativePrompt: string[]
 ) {
   try {
     const style = await db.style.create({
       data: {
         label,
         thumbnail,
+        family,
+        color,
+        llmPrompt,
+        imagePrompt: {
+          set: imagePrompt,
+        },
+        negativePrompt: {
+          set: negativePrompt,
+        },
         user: {
           connect: {
             id: userId,
           },
         },
+        isDefault: false,
       },
     });
 

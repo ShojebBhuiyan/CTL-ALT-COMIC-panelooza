@@ -9,7 +9,6 @@ export const predictWithGemini = async function predict({
   prompt: string;
   image: string;
 }) {
-  console.log("starting");
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
@@ -17,9 +16,9 @@ export const predictWithGemini = async function predict({
 
   const result = await model.generateContent([prompt, promptImage]);
   const response = result.response;
-  console.log("done");
   const text = response.text();
-  console.log("result:", text);
+  console.log(text);
+  return text;
 };
 
 import { readFileSync } from "fs";

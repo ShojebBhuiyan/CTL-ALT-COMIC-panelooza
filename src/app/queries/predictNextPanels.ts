@@ -34,7 +34,6 @@ export const predictNextPanels = async ({
       : maxNbPanels - existingPanels.length === maxNbPanels
       ? "last"
       : "next";
-
   const query =
     createZephyrPrompt([
       {

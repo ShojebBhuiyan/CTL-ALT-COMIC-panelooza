@@ -23,41 +23,41 @@ export function SharePopup({
         }
       }}
     >
-      <DialogContent className="bg-white text-black transition-all ease-in-out duration-200">
+      <DialogContent className="bg-black text-white transition-all ease-in-out duration-200">
         <DialogHeader className="flex justify-between items-center">
-          <span className="text-lg font-semibold">Share</span>
+          <span className="text-xl text-magenta font-semibold mb-5">Share</span>
         </DialogHeader>
-        <div className="mt-1 flex-col text-center items-center justify-center">
+        <div className="flex-col text-center items-center justify-center p-8">
           <p>Share this link via</p>
           <ul className="flex justify-center gap-3 items-center">
             <a
               href="#"
-              className="flex items-center justify-center h-12 w-12 text-lg border-blue hover:border-2 transition-all duration-100"
+              className="flex items-center justify-center h-12 w-12 text-lg border-magenta hover:border-2 transition-all duration-100"
             >
               <FiFacebook />
             </a>
             <a
               href="#"
-              className="flex items-center justify-center h-12 w-12 text-lg border-blue hover:border-2 transition-all duration-100"
+              className="flex items-center justify-center h-12 w-12 text-lg border-magenta hover:border-2 transition-all duration-100"
             >
               <FiInstagram />
             </a>
             <a
               href="#"
-              className="flex items-center justify-center h-12 w-12 text-lg border-blue hover:border-2 transition-all duration-100"
+              className="flex items-center justify-center h-12 w-12 text-lg border-magenta hover:border-2 transition-all duration-100"
             >
               <FiVoicemail />
             </a>
           </ul>
         </div>
-        <div className="flex items-center h-fit">
+        <div className="flex items-center h-10">
           <p className="text-nowrap">Or copy link</p>
           <Input
             type="text"
             value={url}
-            className="w-full border-2 text-sm bg-white ms-2"
+            className="w-full h-full text-sm bg-white text-black ms-2"
           />
-          <button className="h-10 text-white px-4 py-1 bg-blue-secondary hover:bg-green-secondary">
+          <button className="h-full text-black px-4 py-1 bg-magenta hover:bg-yellow">
             Copy
           </button>
         </div>

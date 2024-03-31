@@ -65,3 +65,21 @@ export const ProjectSchema = z.object({
   }),
   description: z.string().min(1).optional(),
 });
+
+const ACCEPTED_FILE_TYPES = [
+  "image/jpeg",
+  "image/png",
+];
+export const StyleSchema = z.object({
+  label: z.string().min(1, { message: "Name is required" }),
+  thumbnail: z
+    .instanceof(File)
+    .refine(
+      (file) => file && file.size <= 1024 * 1024 * 3,
+      "File size must be less than 3MB"
+    )
+    .refine(
+      (file) => file && ACCEPTED_FILE_TYPES.includes(file.type),
+      "File must be an image"
+    ),
+});

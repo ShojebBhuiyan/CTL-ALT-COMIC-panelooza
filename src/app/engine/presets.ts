@@ -21,8 +21,7 @@ export const presets: Record<string, Preset> = {
     label: "Random style",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://t4.ftcdn.net/jpg/04/89/42/05/360_F_489420550_hEK2OQOwH7coSWYjvFPZ5Uw0XlNuDRMO.jpg",
+    thumbnail: "question-mark-pattern_1319-109.avif",
     llmPrompt: "",
     imagePrompt: (prompt: string) => [],
     negativePrompt: () => [],
@@ -33,7 +32,7 @@ export const presets: Record<string, Preset> = {
     family: "american",
     color: "color",
     thumbnail:
-      "https://img.freepik.com/free-vector/colorful-abstract-watercolor-circles-design-vector_53876-140311.jpg",
+      "colorful-abstract-watercolor-circles-design-vector_53876-140311.avif",
     llmPrompt: "",
     imagePrompt: (prompt: string) => [prompt],
     negativePrompt: () => [],
@@ -44,8 +43,7 @@ export const presets: Record<string, Preset> = {
     label: "Manga",
     family: "asian",
     color: "grayscale",
-    thumbnail:
-      "https://www.fluentu.com/blog/japanese/wp-content/uploads/sites/6/2016/06/japanese-comic-books-e1504202757909.jpeg",
+    thumbnail: "japanese-comic-books-e1504202757909.jpg",
     llmPrompt: "japanese manga",
     imagePrompt: (prompt: string) => [
       `grayscale`,
@@ -74,8 +72,7 @@ export const presets: Record<string, Preset> = {
     label: "Franco-Belgian",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://ichef.bbci.co.uk/news/624/cpsprodpb/A08B/production/_119699014_bcf264bf-5874-463a-ac7f-3095222ae8f1.jpg",
+    thumbnail: "_119699014_bcf264bf-5874-463a-ac7f-3095222ae8f1.jpg",
     llmPrompt:
       'Franco-Belgian comic (a "bande dessinée"), in the style of Franquin, Moebius etc',
     imagePrompt: (prompt: string) => [
@@ -102,8 +99,7 @@ export const presets: Record<string, Preset> = {
     label: "American (Vintage)",
     family: "american",
     color: "color",
-    thumbnail:
-      "https://i0.wp.com/www.toonsmag.com/wp-content/uploads/2023/10/IMG_6655.jpeg?fit=662%2C922&ssl=1",
+    thumbnail: "IMG_6655.webp",
     llmPrompt: "american comic",
     imagePrompt: (prompt: string) => [
       "1950",
@@ -133,8 +129,7 @@ export const presets: Record<string, Preset> = {
     label: "American (Golden Age)",
     family: "american",
     color: "color",
-    thumbnail:
-      "https://i0.wp.com/www.toonsmag.com/wp-content/uploads/2023/10/IMG_6672.jpeg?fit=662%2C497&ssl=1",
+    thumbnail: "IMG_6672.webp",
     llmPrompt: "american comic",
     imagePrompt: (prompt: string) => [
       `american comic`,
@@ -164,8 +159,7 @@ export const presets: Record<string, Preset> = {
     label: "American (Modern)",
     family: "american",
     color: "color",
-    thumbnail:
-      "https://i0.wp.com/www.toonsmag.com/wp-content/uploads/2023/10/photo-output-63.jpeg?fit=662%2C441&ssl=1",
+    thumbnail: "photo-output-63.webp",
     llmPrompt: "american comic",
     imagePrompt: (prompt: string) => [
       "digital color comicbook style",
@@ -196,8 +190,7 @@ export const presets: Record<string, Preset> = {
     label: "Flying saucer",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://t4.ftcdn.net/jpg/05/45/00/87/360_F_545008714_xqQ2dU7cAOVUL6VWg2ljnPW2DFf1Y9x0.jpg",
+    thumbnail: "360_F_545008714_xqQ2dU7cAOVUL6VWg2ljnPW2DFf1Y9x0.jpg",
     llmPrompt: "new pulp science fiction",
     imagePrompt: (prompt: string) => [
       `vintage science fiction`,
@@ -225,8 +218,7 @@ export const presets: Record<string, Preset> = {
     label: "3D Render",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://www.origastock.com/midjourney-ai/source/pixar-midjourney-styles/8.webp",
+    thumbnail: "8.webp",
     llmPrompt: "new movie",
     imagePrompt: (prompt: string) => [
       `3D render animation`,
@@ -252,8 +244,7 @@ export const presets: Record<string, Preset> = {
     label: "Medieval",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://manuscriptroadtrip.files.wordpress.com/2021/12/screenshot-2415.png",
+    thumbnail: "screenshot-2415.png",
     llmPrompt: "medieval story (write in this style)",
     imagePrompt: (prompt: string) => [
       `medieval illuminated manuscript`,
@@ -277,8 +268,7 @@ export const presets: Record<string, Preset> = {
     label: "Pixel",
     family: "european",
     color: "color",
-    thumbnail:
-      "https://i.pinimg.com/originals/b6/42/02/b642023a21ee223fc7a9b8783f7f16d0.png",
+    thumbnail: "b642023a21ee223fc7a9b8783f7f16d0.png",
     llmPrompt: "new movie",
     imagePrompt: (prompt: string) => [
       `pixelart`,
@@ -314,4 +304,25 @@ export const getRandomPreset = (): Preset => {
     Object.keys(presets).filter((preset) => preset !== "random")
   ) as PresetName;
   return getPreset(presetName);
+};
+
+export const addPreset = (styles: any) => {
+  const newPresets: Record<string, Preset> = styles.reduce(
+    (acc: Record<string, Preset>, item: any) => {
+      acc[item.id] = {
+        id: item.id,
+        label: item.label,
+        family: item.family,
+        color: item.color,
+        thumbnail: item.thumbnail,
+        llmPrompt: item.llmPrompt,
+        imagePrompt: (prompt: string) => [...item.imagePrompt, prompt],
+        negativePrompt: (prompt: string) => [...item.negativePrompt, prompt],
+      };
+      return acc;
+    },
+    {}
+  );
+
+  Object.assign(presets, newPresets);
 };
