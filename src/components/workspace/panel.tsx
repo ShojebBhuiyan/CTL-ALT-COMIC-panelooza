@@ -14,7 +14,7 @@ import { useLocalStorage } from "usehooks-ts";
 import { Bubble } from "./bubble";
 import { localStorageKeys } from "@/constants/localStorageKeys";
 import { defaultSettings } from "@/constants/default-settings";
-import { getRender, newRender } from "@/lib/render";
+import { getRender, newRender } from "@/actions/render/render";
 import { EditModal } from "./edit-modal";
 
 export function Panel({
