@@ -1,4 +1,4 @@
-import { GeneratedPanel } from "@/types";
+import { GeneratedPanel } from "@/types/ai";
 
 export function dirtyGeneratedPanelCleaner({
   panel,
