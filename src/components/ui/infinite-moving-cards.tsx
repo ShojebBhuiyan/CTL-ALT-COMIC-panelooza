@@ -1,24 +1,39 @@
 "use client";
 
+import { nonRandomPresets, presets } from "@/constants/presets";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
-  items,
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
   className,
 }: {
-  items: {
-    name: string;
-    picture: string;
-  }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
   className?: string;
 }) => {
+  const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    nonRandomPresets.forEach((presetKey) => {
+      fetch(`/api/image?fileName=${presets[presetKey].thumbnail}`)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const url = URL.createObjectURL(blob);
+          setImageUrls((prevUrls) => ({ ...prevUrls, [presetKey]: url }));
+        })
+        .catch((error) => {
+          console.error(
+            "There has been a problem with your fetch operation:",
+            error
+          );
+        });
+    });
+  }, []);
+
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
   const colors = [
@@ -93,7 +108,7 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item, idx) => (
+        {nonRandomPresets.map((item, idx) => (
           <li
             className="w-64  relative px-8 py-6 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]"
             style={{
@@ -101,16 +116,16 @@ export const InfiniteMovingCards = ({
               padding: "10px",
               boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
             }}
-            key={item.name}
+            key={presets[item].label}
           >
             <div className=" p-2">
               <img
-                src={item.picture}
-                alt={item.name}
+                src={imageUrls[item]}
+                alt={presets[item].label}
                 className="w-64 h-64 object-cover"
               />
               <p className="mt-6 font-bold text-white text-center">
-                {item.name}
+                {presets[item].label}
               </p>
             </div>
           </li>
