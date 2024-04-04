@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
 import { Buttons } from "./buttons";
-import { Prompt } from "../../../app/workspace/interface/menu/prompt";
+import { Prompt } from "./prompt";
 
 export function Menu({
   draftPreset,

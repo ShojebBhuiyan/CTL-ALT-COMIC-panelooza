@@ -5,7 +5,7 @@ import Strip from "@/components/workspace/strip";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Menu } from "./menu/menu";
-import { Zoom } from "../../app/workspace/interface/zoom";
+import { Zoom } from "./zoom";
 import StylePicker from "./style-picker";
 
 export default function Workspace({

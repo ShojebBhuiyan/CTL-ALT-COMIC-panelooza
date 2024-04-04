@@ -6,11 +6,11 @@ import { GeneratedPanel } from "@/types/ai";
 
 import { getStoryContinuation } from "@/actions/queries/getStoryContinuation";
 import { useStore } from "@/components/render/store";
-import { defaultSettings } from "@/app/workspace/interface/settings-dialog/defaultSettings";
 import { localStorageKeys } from "@/constants/localStorageKeys";
 import { useDynamicConfig } from "@/lib/useDynamicConfig";
 import { useLocalStorage } from "usehooks-ts";
 import { Page } from "./page";
+import { defaultSettings } from "@/constants/default-settings";
 
 export default function Strip() {
   const [_isPending, startTransition] = useTransition();
