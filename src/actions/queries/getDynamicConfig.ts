@@ -1,7 +1,7 @@
 "use server";
 
 import { getValidNumber } from "@/lib/getValidNumber";
-import { DynamicConfig } from "@/types";
+import { DynamicConfig } from "@/types/ai";
 
 export async function getDynamicConfig(): Promise<DynamicConfig> {
   const maxNbPages = getValidNumber(

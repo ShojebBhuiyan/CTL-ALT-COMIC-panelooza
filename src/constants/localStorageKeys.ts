@@ -1,4 +1,4 @@
-import { Settings } from "@/types";
+import { Settings } from "@/types/ai";
 
 export const localStorageKeys: Record<keyof Settings, string> = {
   renderingModelVendor: "CONF_RENDERING_MODEL_VENDOR",
@@ -7,4 +7,16 @@ export const localStorageKeys: Record<keyof Settings, string> = {
   openaiApiLanguageModel: "CONF_AUTH_OPENAI_API_LANGUAGE_MODEL",
   hasGeneratedAtLeastOnce: "CONF_HAS_GENERATED_AT_LEAST_ONCE",
   userDefinedMaxNumberOfPages: "CONF_USER_DEFINED_MAX_NUMBER_OF_PAGES",
+  renderingUseTurbo: "",
+  huggingFaceOAuth: "",
+  huggingfaceApiKey: "",
+  huggingfaceInferenceApiModel: "",
+  huggingfaceInferenceApiModelTrigger: "",
+  huggingfaceInferenceApiFileType: "",
+  replicateApiKey: "",
+  replicateApiModel: "",
+  replicateApiModelVersion: "",
+  replicateApiModelTrigger: "",
+  groqApiKey: "",
+  groqApiLanguageModel: "",
 };

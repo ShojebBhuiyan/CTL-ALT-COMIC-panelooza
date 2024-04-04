@@ -1,8 +1,11 @@
 "use client";
 
-import { PresetName } from "@/app/engine/presets";
-import { useStore } from "@/app/store";
-import { LayoutName, defaultLayout } from "@/app/workspace/layouts";
+import { PresetName } from "@/constants/presets";
+import { useStore } from "@/components/render/store";
+import {
+  LayoutName,
+  defaultLayout,
+} from "@/components/workspace/layouts/layout-0";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";

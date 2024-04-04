@@ -1,6 +1,6 @@
 import { joinWords } from "@/lib/joinWords";
-import { GeneratedPanel } from "@/types";
-import { Preset } from "../engine/presets";
+import { GeneratedPanel } from "@/types/ai";
+import { Preset } from "../../constants/presets";
 import { predictNextPanels } from "./predictNextPanels";
 
 export const getStoryContinuation = async ({
@@ -53,7 +53,7 @@ export const getStoryContinuation = async ({
         caption: "(Sorry, LLM generation failed: using degraded mode)",
       });
     }
-    console.error(err)
+    console.error(err);
   } finally {
     return panels;
   }

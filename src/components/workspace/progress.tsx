@@ -18,11 +18,11 @@ export function Progress({
   const isLoadingRef = useRef(isLoading);
 
   const updateProgressBar = () => {
-    const duration = 1000; 
-    const frequency = 200; 
+    const duration = 1000;
+    const frequency = 200;
     const nbUpdatesPerSec = duration / frequency;
     const nbSeconds = 80;
-    const amountInPercent = 100 / (nbUpdatesPerSec * nbSeconds); 
+    const amountInPercent = 100 / (nbUpdatesPerSec * nbSeconds);
 
     progressRef.current = Math.min(100, progressRef.current + amountInPercent);
     setProcessPercent(progressRef.current);

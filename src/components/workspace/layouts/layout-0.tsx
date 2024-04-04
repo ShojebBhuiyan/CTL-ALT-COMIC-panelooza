@@ -1,13 +1,13 @@
 "use client";
 
-import { Panel } from "@/app/workspace/interface/panel";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { pick } from "@/lib/pick";
-import { LayoutProps } from "@/types";
+import { Panel } from "../panel";
+import { LayoutProps } from "@/types/ai";
 
 export function Layout0({ page, nbPanels }: LayoutProps) {
   return (

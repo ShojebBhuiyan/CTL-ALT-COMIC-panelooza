@@ -1,4 +1,4 @@
-import { RenderingModelVendor, Settings } from "@/types";
+import { RenderingModelVendor, Settings } from "@/types/ai";
 
 export const defaultSettings: Settings = {
   renderingModelVendor: "SERVER" as RenderingModelVendor,

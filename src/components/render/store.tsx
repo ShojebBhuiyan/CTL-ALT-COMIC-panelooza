@@ -9,13 +9,13 @@ import {
   defaultPreset,
   getPreset,
   getRandomPreset,
-} from "@/app/engine/presets";
-import { RenderedScene } from "@/types";
+} from "@/constants/presets";
+import { RenderedScene } from "@/types/ai";
 import {
   LayoutName,
   defaultLayout,
   getRandomLayoutName,
-} from "../workspace/layouts";
+} from "../workspace/layouts/layout-0";
 
 export const useStore = create<{
   prompt: string;

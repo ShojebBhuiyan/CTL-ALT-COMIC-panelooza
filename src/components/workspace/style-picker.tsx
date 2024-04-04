@@ -1,12 +1,12 @@
 "use client";
 
-import { PresetName, presets } from "@/app/engine/presets";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { CreateStylePopup } from "./create-style-popup";
+import { PresetName, presets } from "@/constants/presets";
 
-export default function Page({
+export default function StylePicker({
   draftPreset,
   setDraftPreset,
   userId,
@@ -71,7 +71,7 @@ export default function Page({
               ? "brightness-50"
               : "transition-all duration-300 group-hover:brightness-50"
           }`}
-          src={imageUrl!} 
+          src={imageUrl!}
           onLoad={() => setLoaded(true)}
           style={{ display: loaded ? "block" : "none" }}
         />

@@ -1,6 +1,6 @@
 "use server";
 
-import { predictStyle } from "@/app/queries/predictStyle";
+import { predictStyle } from "@/actions/queries/predictStyle";
 import { createStyle } from "@/data/style";
 import { revalidateTag } from "next/cache";
 

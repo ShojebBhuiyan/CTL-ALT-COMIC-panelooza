@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 
-import { getDynamicConfig } from "@/app/queries/getDynamicConfig";
+import { getDynamicConfig } from "@/actions/queries/getDynamicConfig";
 import { DynamicConfig } from "@/types";
 
 import { getDefaultDynamicConfig } from "./getDefaultDynamicConfig";

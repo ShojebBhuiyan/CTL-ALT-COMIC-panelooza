@@ -1,4 +1,4 @@
-import { useStore } from "@/app/store";
+import { useStore } from "@/components/render/store";
 import { VerticalSlider } from "@/components/ui/vertical-slider";
 import { cn } from "@/lib/utils";
 

@@ -1,7 +1,7 @@
 import { getServerSession } from "@/actions/auth/get-server-session";
 import { getAllUserStyles } from "@/actions/style/get-all-user-styles";
 import { redirect } from "next/navigation";
-import Page from "@/app/workspace/[workspaceId]/workspace";
+import Page from "@/components/workspace/workspace";
 
 export default async function Canvas({
   params,

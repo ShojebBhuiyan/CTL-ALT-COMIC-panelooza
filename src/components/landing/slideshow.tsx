@@ -3,7 +3,7 @@
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { useContext } from "react";
 import { ActiveCardContext } from "./ActiveCardContext";
-import { PresetName, nonRandomPresets, presets } from "@/app/engine/presets";
+import { PresetName, nonRandomPresets, presets } from "@/constants/presets";
 
 export function Slideshow() {
   const { activeCard } = useContext(ActiveCardContext);

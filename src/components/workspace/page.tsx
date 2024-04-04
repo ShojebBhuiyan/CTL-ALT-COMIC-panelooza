@@ -2,8 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-import { useStore } from "@/app/store";
-import { allLayoutAspectRatios, allLayouts } from "@/app/workspace/layouts";
+import { useStore } from "@/components/render/store";
+import {
+  allLayoutAspectRatios,
+  allLayouts,
+} from "@/components/workspace/layouts/layout-0";
 import { cn } from "@/lib/utils";
 
 export function Page({ page }: { page: number }) {
@@ -37,7 +40,13 @@ export function Page({ page }: { page: number }) {
   return (
     <div
       ref={pageRef}
-      className={cn(`w-full`, `print:w-screen`, `print:h-fit`, `print:absolute`, `print:left-0`)}
+      className={cn(
+        `w-full`,
+        `print:w-screen`,
+        `print:h-fit`,
+        `print:absolute`,
+        `print:left-0`
+      )}
       style={{
         padding: `${Math.round((zoomLevel / 100) * 16)}px`,
       }}

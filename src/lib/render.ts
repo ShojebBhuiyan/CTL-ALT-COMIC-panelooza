@@ -2,7 +2,7 @@
 
 import { v4 as uuidv4 } from "uuid";
 
-import { RenderedScene } from "@/types";
+import { RenderedScene } from "@/types/ai";
 
 const serverOpenaiApiKey = `${process.env.AUTH_OPENAI_API_KEY || ""}`;
 const serverOpenaiApiBaseUrl = `${

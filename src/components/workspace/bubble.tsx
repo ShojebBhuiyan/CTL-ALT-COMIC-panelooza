@@ -3,7 +3,7 @@
 import { ReactNode, useRef } from "react";
 import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 
-import { useStore } from "@/app/store";
+import { useStore } from "@/components/render/store";
 import { cn } from "@/lib/utils";
 
 export function Bubble({

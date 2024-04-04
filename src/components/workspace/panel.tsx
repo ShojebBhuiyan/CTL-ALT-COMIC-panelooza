@@ -3,19 +3,19 @@
 import { useEffect, useRef, useState, useTransition } from "react";
 import { RxPencil2, RxReload } from "react-icons/rx";
 
-import { RenderedScene, RenderingModelVendor } from "@/types";
+import { RenderedScene, RenderingModelVendor } from "@/types/ai";
 
-import { getRender, newRender } from "@/app/engine/render";
-import { useStore } from "@/app/store";
+import { useStore } from "@/components/render/store";
 
-import { Progress } from "@/app/workspace/interface/progress";
+import { Progress } from "@/components/workspace/progress";
 import { getInitialRenderedScene } from "@/lib/getInitialRenderedScene";
 import { cn } from "@/lib/utils";
 import { useLocalStorage } from "usehooks-ts";
-import { EditModal } from "../edit-modal";
-import { defaultSettings } from "../settings-dialog/defaultSettings";
-import { localStorageKeys } from "../settings-dialog/localStorageKeys";
 import { Bubble } from "./bubble";
+import { localStorageKeys } from "@/constants/localStorageKeys";
+import { defaultSettings } from "@/constants/default-settings";
+import { getRender, newRender } from "@/lib/render";
+import { EditModal } from "./edit-modal";
 
 export function Panel({
   page,
@@ -68,7 +68,7 @@ export function Panel({
     renderedRef.current = rendered;
   }, [renderedKey]);
 
-  const timeoutRef = useRef<any>(null);
+  // const timeoutRef = useRef<any>(null);
 
   const enableRateLimiter =
     `${process.env.NEXT_PUBLIC_ENABLE_RATE_LIMITER}` === "true";
@@ -156,7 +156,7 @@ export function Panel({
               addToUpscaleQueue(panelId, newRendered);
             } else if (!newRendered.status || newRendered.status === "error") {
               setGeneratingImages(panelId, false);
-            } 
+            }
           } else {
             //
             setRendered(panelId, {
@@ -177,61 +177,61 @@ export function Panel({
     );
   };
 
-  const checkStatus = () => {
-    startTransition(async () => {
-      clearTimeout(timeoutRef.current);
+  // const checkStatus = () => {
+  //   startTransition(async () => {
+  //     clearTimeout(timeoutRef.current);
 
-      if (
-        !renderedRef.current?.renderId ||
-        renderedRef.current?.status !== "pending"
-      ) {
-        timeoutRef.current = setTimeout(checkStatus, delay);
-        return;
-      }
+  //     if (
+  //       !renderedRef.current?.renderId ||
+  //       renderedRef.current?.status !== "pending"
+  //     ) {
+  //       timeoutRef.current = setTimeout(checkStatus, delay);
+  //       return;
+  //     }
 
-      try {
-        setGeneratingImages(panelId, true);
-        const newRendered = await getRender(renderedRef.current.renderId);
+  //     try {
+  //       setGeneratingImages(panelId, true);
+  //       const newRendered = await getRender(renderedRef.current.renderId);
 
-        if (
-          JSON.stringify(renderedRef.current) !== JSON.stringify(newRendered)
-        ) {
-          setRendered(panelId, (renderedRef.current = newRendered));
-          setGeneratingImages(panelId, true);
-        }
+  //       if (
+  //         JSON.stringify(renderedRef.current) !== JSON.stringify(newRendered)
+  //       ) {
+  //         setRendered(panelId, (renderedRef.current = newRendered));
+  //         setGeneratingImages(panelId, true);
+  //       }
 
-        if (newRendered.status === "pending") {
-          timeoutRef.current = setTimeout(checkStatus, delay);
-        } else if (
-          !newRendered.status ||
-          newRendered.status === "error" ||
-          (newRendered.status === "completed" && !newRendered.assetUrl?.length)
-        ) {
-          try {
-            const newAttempt = await newRender({
-              prompt,
-              width,
-              height,
-            });
-            if (!newAttempt.status || newAttempt.status === "error") {
-              throw new Error("invalid status");
-            }
-            setRendered(panelId, newAttempt);
-          } catch (err) {
-            console.error("yeah sorry, something is wrong.. aborting", err);
-            setGeneratingImages(panelId, false);
-          }
-        } else {
-          console.log("panel finished!");
-          setGeneratingImages(panelId, false);
-          addToUpscaleQueue(panelId, newRendered);
-        }
-      } catch (err) {
-        console.error(err);
-        timeoutRef.current = setTimeout(checkStatus, delay);
-      }
-    });
-  };
+  //       if (newRendered.status === "pending") {
+  //         timeoutRef.current = setTimeout(checkStatus, delay);
+  //       } else if (
+  //         !newRendered.status ||
+  //         newRendered.status === "error" ||
+  //         (newRendered.status === "completed" && !newRendered.assetUrl?.length)
+  //       ) {
+  //         try {
+  //           const newAttempt = await newRender({
+  //             prompt,
+  //             width,
+  //             height,
+  //           });
+  //           if (!newAttempt.status || newAttempt.status === "error") {
+  //             throw new Error("invalid status");
+  //           }
+  //           setRendered(panelId, newAttempt);
+  //         } catch (err) {
+  //           console.error("yeah sorry, something is wrong.. aborting", err);
+  //           setGeneratingImages(panelId, false);
+  //         }
+  //       } else {
+  //         console.log("panel finished!");
+  //         setGeneratingImages(panelId, false);
+  //         addToUpscaleQueue(panelId, newRendered);
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //       timeoutRef.current = setTimeout(checkStatus, delay);
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     if (!prompt.length) {
@@ -240,11 +240,11 @@ export function Panel({
 
     startImageGeneration({ prompt, width, height, nbFrames, revision });
 
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(checkStatus, delay);
+    // clearTimeout(timeoutRef.current);
+    // timeoutRef.current = setTimeout(checkStatus, delay);
 
     return () => {
-      clearTimeout(timeoutRef.current);
+      // clearTimeout(timeoutRef.current);
     };
   }, [prompt, width, height, nbFrames, revision]);
 
@@ -367,9 +367,7 @@ export function Panel({
           width={width}
           height={height}
           alt={rendered.alt}
-          className={cn(
-            `comic-panel w-full h-full object-cover max-w-max`
-          )}
+          className={cn(`comic-panel w-full h-full object-cover max-w-max`)}
         />
       )}
     </div>

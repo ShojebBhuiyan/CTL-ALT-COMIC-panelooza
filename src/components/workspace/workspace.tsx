@@ -1,18 +1,14 @@
 "use client";
 
-import {
-  PresetName,
-  addPreset,
-  defaultPreset
-} from "@/app/engine/presets";
+import { PresetName, addPreset, defaultPreset } from "@/constants/presets";
 import Strip from "@/components/workspace/strip";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { Menu } from "../interface/menu";
-import StylePicker from "../interface/style-picker/page";
-import { Zoom } from "../interface/zoom";
+import { Menu } from "./menu/menu";
+import { Zoom } from "../../app/workspace/interface/zoom";
+import StylePicker from "./style-picker";
 
-export default function Page({
+export default function Workspace({
   userId,
   styles,
 }: {

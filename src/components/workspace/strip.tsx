@@ -2,15 +2,15 @@
 import { useEffect, useState, useTransition } from "react";
 
 import { joinWords } from "@/lib/joinWords";
-import { GeneratedPanel } from "@/types";
+import { GeneratedPanel } from "@/types/ai";
 
-import { getStoryContinuation } from "@/app/queries/getStoryContinuation";
-import { useStore } from "@/app/store";
-import { Page } from "@/app/workspace/interface/page";
+import { getStoryContinuation } from "@/actions/queries/getStoryContinuation";
+import { useStore } from "@/components/render/store";
 import { defaultSettings } from "@/app/workspace/interface/settings-dialog/defaultSettings";
-import { localStorageKeys } from "@/app/workspace/interface/settings-dialog/localStorageKeys";
+import { localStorageKeys } from "@/constants/localStorageKeys";
 import { useDynamicConfig } from "@/lib/useDynamicConfig";
 import { useLocalStorage } from "usehooks-ts";
+import { Page } from "./page";
 
 export default function Strip() {
   const [_isPending, startTransition] = useTransition();
@@ -144,7 +144,7 @@ export default function Strip() {
         }
       }
     });
-  }, [prompt, preset?.label, currentNbPanels, maxNbPanels]); 
+  }, [prompt, preset?.label, currentNbPanels, maxNbPanels]);
 
   return (
     <div

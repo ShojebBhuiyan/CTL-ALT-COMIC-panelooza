@@ -3,8 +3,8 @@ import { createZephyrPrompt } from "@/lib/createZephyrPrompt";
 import { dirtyGeneratedPanelCleaner } from "@/lib/dirtyGeneratedPanelCleaner";
 import { dirtyGeneratedPanelsParser } from "@/lib/dirtyGeneratedPanelsParser";
 import { sleep } from "@/lib/sleep";
-import { GeneratedPanel } from "@/types";
-import { Preset } from "../engine/presets";
+import { GeneratedPanel } from "@/types/ai";
+import { Preset } from "../../constants/presets";
 import { predictWithOpenAI } from "./predictWithOpenAI";
 
 export const predictNextPanels = async ({
@@ -69,7 +69,10 @@ export const predictNextPanels = async ({
     await sleep(2000);
 
     try {
-      result = `${await predictWithOpenAI(query + " \n ", nbMaxNewTokens)}`.trim();
+      result = `${await predictWithOpenAI(
+        query + " \n ",
+        nbMaxNewTokens
+      )}`.trim();
       console.log("LLM result (2nd trial):", result);
       if (!result.length) {
         throw new Error("empty result on 2nd trial!");
