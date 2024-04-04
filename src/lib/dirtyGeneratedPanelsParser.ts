@@ -1,4 +1,4 @@
-import { GeneratedPanel } from "@/types";
+import { GeneratedPanel } from "@/types/ai";
 import { cleanJson } from "./cleanJson";
 import { parseBadJSON } from "./parseBadJSON";
 

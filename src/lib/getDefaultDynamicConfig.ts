@@ -1,4 +1,4 @@
-import { DynamicConfig } from "@/types";
+import { DynamicConfig } from "@/types/ai";
 
 export const getDefaultDynamicConfig = (): DynamicConfig => ({
   maxNbPages: 1,

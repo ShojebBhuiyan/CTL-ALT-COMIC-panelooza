@@ -1,4 +1,4 @@
-import { RenderedScene } from "@/types";
+import { RenderedScene } from "@/types/ai";
 
 export const getInitialRenderedScene = (): RenderedScene => ({
   renderId: "",

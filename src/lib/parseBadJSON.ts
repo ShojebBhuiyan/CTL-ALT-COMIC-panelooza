@@ -1,4 +1,4 @@
-import { GeneratedPanels } from "@/types";
+import { GeneratedPanels } from "@/types/ai";
 
 export function parseBadJSON(jsonLikeString: string): GeneratedPanels {
   try {
