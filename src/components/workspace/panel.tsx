@@ -8,7 +8,6 @@ import { RenderedScene, RenderingModelVendor } from "@/types/ai";
 import { useStore } from "@/components/render/store";
 
 import { Progress } from "@/components/workspace/progress";
-import { getInitialRenderedScene } from "@/lib/getInitialRenderedScene";
 import { cn } from "@/lib/utils";
 import { useLocalStorage } from "usehooks-ts";
 import { Bubble } from "./bubble";
@@ -16,6 +15,7 @@ import { localStorageKeys } from "@/constants/localStorageKeys";
 import { defaultSettings } from "@/constants/default-settings";
 import { getRender, newRender } from "@/actions/render/render";
 import { EditModal } from "./edit-modal";
+import { getInitialRenderedScene } from "@/actions/render/get-initial-rendered-scene";
 
 export function Panel({
   page,
@@ -59,6 +59,8 @@ export function Panel({
   const setRendered = useStore((state) => state.setRendered);
 
   const rendered = renderedScenes[panelIndex] || getInitialRenderedScene();
+
+  console.log("rendered", rendered);
 
   const [revision, setRevision] = useState(0);
 
