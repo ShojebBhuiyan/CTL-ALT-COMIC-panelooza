@@ -60,7 +60,7 @@ export const StickyScroll = ({
               backgroundColor: card.color,
               transform:
                 index === activeCard ? "translateX(0)" : "translateX(-100%)",
-              transition: "transform 0.5s ease-out",
+              transition: "transform 1s ease-out",
               zIndex: 1,
             }}
           />

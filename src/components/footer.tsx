@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Select,
   SelectContent,
@@ -8,18 +7,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
 import {
-  FiGlobe,
   FiDownloadCloud,
-  FiTwitter,
   FiFacebook,
-  FiYoutube,
+  FiGlobe,
   FiLinkedin,
+  FiTwitter,
+  FiYoutube,
 } from "react-icons/fi";
 
 export function Footer() {
   return (
-    <div className="w-full mt-auto">
+    <div className="print:hidden w-full mt-auto">
       <div className="w-full flex items-center justify-center gap-6 bg-black text-white text-sm font-syne">
         <div className="w-1/6">
           <img src="/logo.jpg" alt="Logo" className="w-3/4" />

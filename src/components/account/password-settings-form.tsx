@@ -1,9 +1,6 @@
 "use client";
 
-import { Input } from "../ui/input";
-import { useTransition } from "react";
-import { Button } from "../ui/button";
-import { SettingsCardWrapper } from "./settings-card-wrapper";
+import { changePassword } from "@/actions/user/change-password";
 import {
   Form,
   FormControl,
@@ -12,12 +9,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useToast } from "../ui/use-toast";
-import { useForm } from "react-hook-form";
 import { PasswordSchema } from "@/schemas";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { changePassword } from "@/actions/user/change-password";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
+import { SettingsCardWrapper } from "./settings-card-wrapper";
 
 interface PasswordSettingsProps {
   id: string;

@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { LuFrame, LuHeart, LuUser2, LuHistory, LuCoins } from "react-icons/lu";
+import { LuCoins, LuFrame, LuHeart, LuHistory, LuUser2 } from "react-icons/lu";
 import { ActiveMenuContext } from "./ActiveMenuContext";
 
 export default function Sidebar() {
@@ -50,7 +50,7 @@ export default function Sidebar() {
       <Link href={`/${session?.user?.username!}/`}>
         <Button name="Workspaces" Icon={LuFrame} />
       </Link>
-      <Link href={`#`}>
+      <Link href={`/${session?.user?.username!}/styles`}>
         <Button name="Your Styles" Icon={LuHistory} />
       </Link>
       <Link href={`#`}>

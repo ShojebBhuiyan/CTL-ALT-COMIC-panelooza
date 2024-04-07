@@ -1,9 +1,7 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { SignupSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { signup } from "@/actions/auth/signup";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,13 +12,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { signup } from "@/actions/auth/signup";
-import { useTransition } from "react";
-import { useRouter } from "next/navigation";
-import AuthCard from "./auth-card";
 import { replaceSpaceInString } from "@/lib/utils";
+import { SignupSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import AuthCard from "./auth-card";
 
 export function SignupForm() {
   const [isPending, startTransition] = useTransition();
@@ -142,6 +142,27 @@ export function SignupForm() {
                 </FormControl>
                 <FormDescription>
                   Choose a strong password with at least 8 characters.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="use same password as above"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Re-enter your password.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

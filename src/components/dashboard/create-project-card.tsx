@@ -1,16 +1,14 @@
 "use client";
 
+import { createNewProject } from "@/actions/project/create-new-project";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { ProjectSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useToast } from "../ui/use-toast";
-import { useTransition } from "react";
-import { createNewProject } from "@/actions/project/create-new-project";
 import {
   Form,
   FormControl,
@@ -19,17 +17,15 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Project } from "@prisma/client";
-import { revalidateTag } from "next/cache";
+import { useToast } from "../ui/use-toast";
 
 interface CreateProjectCardProps {
   userId: string;
-  // existingProjects: Project[];
 }
 
 export default function CreateProjectCard({
   userId,
-}: // existingProjects,
+}: 
 CreateProjectCardProps) {
   const [isPending, startTransition] = useTransition();
 
@@ -45,7 +41,6 @@ CreateProjectCardProps) {
 
   function onSubmit(values: z.infer<typeof ProjectSchema>) {
     startTransition(() => {
-      // Create project
       createNewProject(values.name, userId, values.description)
         .then((project) => {
           if (project) {

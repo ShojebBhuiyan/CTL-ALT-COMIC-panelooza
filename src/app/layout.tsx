@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Inter as FontSans, Syne, Karla } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/providers/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "@/components/footer";
-import { AuthProvider } from "@/providers/auth-provider";
 import { Navbar } from "@/components/navbar/navbar";
+import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
+import { AuthProvider } from "@/providers/auth-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import type { Metadata } from "next";
+import { Inter as FontSans, Karla, Syne } from "next/font/google";
+import "./globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],

@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import { ActiveCardContext } from '@/components/landing/ActiveCardContext'
+import { ActiveCardContext } from "@/components/landing/ActiveCardContext";
 import { Hero } from "@/components/landing/hero";
 import { Motivation } from "@/components/landing/motivation";
+import { Pricing } from "@/components/landing/pricing";
+import { Review } from "@/components/landing/review";
 import { Slideshow } from "@/components/landing/slideshow";
 import { TutorialAi } from "@/components/landing/tutorial-ai";
 import { TutorialManual } from "@/components/landing/tutorial-manual";
-import { Review } from "@/components/landing/review";
-import { Pricing } from "@/components/landing/pricing";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import { useState } from "react";
 
 const content = [
   {
