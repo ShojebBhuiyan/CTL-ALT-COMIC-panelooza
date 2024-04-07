@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 import { Panel } from "../panel";
 
 export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
-
-  const [scenes, setScenes] = useState<RenderedScene[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [scenes, setScenes] = useState<RenderedScene[] | undefined>([]);
 
   useEffect(() => {
     getInitialRenderedScene(projectId).then((data) => {
@@ -23,14 +23,17 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
           segments: [],
         }));
         setScenes(updatedData);
+        setIsLoading(false);
       }
     });
-  }, [projectId]);
+  }, []);
 
   return (
-    <ResizablePanelGroup direction="vertical" className="border">
-      {scenes.length > 0 && (
-        <>
+    <>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ResizablePanelGroup direction="vertical" className="border">
           <ResizablePanel defaultSize={50}>
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={50}>
@@ -83,8 +86,10 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
             </ResizablePanelGroup>
           </ResizablePanel>
           <ResizableHandle />
-        </>
+        </ResizablePanelGroup>
+
       )}
-    </ResizablePanelGroup>
+    </>
+
   );
 }
