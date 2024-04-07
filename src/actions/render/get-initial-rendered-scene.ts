@@ -1,6 +1,5 @@
 "use server";
 
-import { RenderedScene } from "@/types/ai";
 import { db } from "@/lib/db";
 
 export async function getInitialRenderedScene(projectId: string) {
@@ -8,6 +7,10 @@ export async function getInitialRenderedScene(projectId: string) {
     const scenes = await db.renderedScene.findMany({
       where: {
         projectId,
+      },
+      take: 4,
+      orderBy: {
+        createdAt: 'desc',
       },
     });
 

@@ -1,23 +1,29 @@
 "use client"
 
+import { getInitialRenderedScene } from "@/actions/render/get-initial-rendered-scene";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { pick } from "@/lib/pick";
+import { LayoutProps, RenderedScene, RenderedSceneStatus } from "@/types/ai";
+import { useEffect, useState } from "react";
 import { Panel } from "../panel";
-import { LayoutProps } from "@/types/ai";
-import { getInitialRenderedScene } from "@/actions/render/get-initial-rendered-scene";
-import { useState, useEffect } from "react";
 
 export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
   
-  const [scenes, setScenes] = useState<{ assetUrl: string }[] | null>(null);
+  const [scenes, setScenes] = useState<RenderedScene[] | undefined>([]);
 
   useEffect(() => {
     getInitialRenderedScene(projectId).then((data) => {
-      setScenes(data);
+      if (data) {
+        const updatedData = data.map(item => ({
+          ...item,
+          status: item.status as RenderedSceneStatus,
+          segments: [], 
+        }));
+        setScenes(updatedData);
+      }
     });
   }, [projectId]);
 
@@ -27,7 +33,7 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={50}>
             <Panel
-              // savedUrl={scenses?.at(0)?.assetUrl}
+              savedUrl={scenes?.at(0)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={0}
@@ -38,7 +44,7 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
           <ResizableHandle />
           <ResizablePanel defaultSize={50}>
             <Panel
-              // savedUrl={scenses?.at(1)?.assetUrl}
+              savedUrl={scenes?.at(1)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={1}
@@ -53,7 +59,7 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={50}>
             <Panel
-              // savedUrl={scenses?.at(2)?.assetUrl}
+              savedUrl={scenes?.at(2)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={2}
@@ -64,7 +70,7 @@ export function Layout0({ projectId, page, nbPanels }: LayoutProps) {
           <ResizableHandle />
           <ResizablePanel defaultSize={50}>
             <Panel
-              // savedUrl={scenses?.at(3)?.assetUrl}
+              savedUrl={scenes?.at(3)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={3}

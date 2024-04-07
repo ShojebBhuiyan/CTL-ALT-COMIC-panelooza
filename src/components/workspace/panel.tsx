@@ -183,74 +183,13 @@ export function Panel({
     );
   };
 
-  // const checkStatus = () => {
-  //   startTransition(async () => {
-  //     clearTimeout(timeoutRef.current);
-
-  //     if (
-  //       !renderedRef.current?.renderId ||
-  //       renderedRef.current?.status !== "pending"
-  //     ) {
-  //       timeoutRef.current = setTimeout(checkStatus, delay);
-  //       return;
-  //     }
-
-  //     try {
-  //       setGeneratingImages(panelId, true);
-  //       const newRendered = await getRender(renderedRef.current.renderId);
-
-  //       if (
-  //         JSON.stringify(renderedRef.current) !== JSON.stringify(newRendered)
-  //       ) {
-  //         setRendered(panelId, (renderedRef.current = newRendered));
-  //         setGeneratingImages(panelId, true);
-  //       }
-
-  //       if (newRendered.status === "pending") {
-  //         timeoutRef.current = setTimeout(checkStatus, delay);
-  //       } else if (
-  //         !newRendered.status ||
-  //         newRendered.status === "error" ||
-  //         (newRendered.status === "completed" && !newRendered.assetUrl?.length)
-  //       ) {
-  //         try {
-  //           const newAttempt = await newRender({
-  //             prompt,
-  //             width,
-  //             height,
-  //           });
-  //           if (!newAttempt.status || newAttempt.status === "error") {
-  //             throw new Error("invalid status");
-  //           }
-  //           setRendered(panelId, newAttempt);
-  //         } catch (err) {
-  //           console.error("yeah sorry, something is wrong.. aborting", err);
-  //           setGeneratingImages(panelId, false);
-  //         }
-  //       } else {
-  //         console.log("panel finished!");
-  //         setGeneratingImages(panelId, false);
-  //         addToUpscaleQueue(panelId, newRendered);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //       timeoutRef.current = setTimeout(checkStatus, delay);
-  //     }
-  //   });
-  // };
-
   useEffect(() => {
     if (!prompt.length) {
       return;
     }
 
-    startImageGeneration({ prompt, width, height, nbFrames, revision });
-
-    // clearTimeout(timeoutRef.current);
-    // timeoutRef.current = setTimeout(checkStatus, delay);
-
+    !savedUrl && startImageGeneration({ prompt, width, height, nbFrames, revision });
     return () => {
-      // clearTimeout(timeoutRef.current);
     };
   }, [prompt, width, height, nbFrames, revision]);
 
