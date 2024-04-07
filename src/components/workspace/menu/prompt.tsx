@@ -41,26 +41,26 @@ export function Prompt({
   const [draftPromptB, setDraftPromptB] = useState(lastDraftPromptB);
   const draftPrompt = `${draftPromptA}||${draftPromptB}`;
 
-  useEffect(() => {
-    if (lastDraftPromptA !== draftPromptA) {
-      setLastDraftPromptA(draftPromptA);
-    }
-  }, [draftPromptA]);
-  useEffect(() => {
-    if (lastDraftPromptA !== draftPromptA) {
-      setDraftPromptA(lastDraftPromptA);
-    }
-  }, [lastDraftPromptA]);
-  useEffect(() => {
-    if (lastDraftPromptB !== draftPromptB) {
-      setLastDraftPromptB(draftPromptB);
-    }
-  }, [draftPromptB]);
-  useEffect(() => {
-    if (lastDraftPromptB !== draftPromptB) {
-      setDraftPromptB(lastDraftPromptB);
-    }
-  }, [lastDraftPromptB]);
+  // useEffect(() => {
+  //   if (lastDraftPromptA !== draftPromptA) {
+  //     setLastDraftPromptA(draftPromptA);
+  //   }
+  // }, [draftPromptA]);
+  // useEffect(() => {
+  //   if (lastDraftPromptA !== draftPromptA) {
+  //     setDraftPromptA(lastDraftPromptA);
+  //   }
+  // }, [lastDraftPromptA]);
+  // useEffect(() => {
+  //   if (lastDraftPromptB !== draftPromptB) {
+  //     setLastDraftPromptB(draftPromptB);
+  //   }
+  // }, [draftPromptB]);
+  // useEffect(() => {
+  //   if (lastDraftPromptB !== draftPromptB) {
+  //     setDraftPromptB(lastDraftPromptB);
+  //   }
+  // }, [lastDraftPromptB]);
 
   const handleSubmit = () => {
     const promptChanged = draftPrompt.trim() !== prompt.trim();
