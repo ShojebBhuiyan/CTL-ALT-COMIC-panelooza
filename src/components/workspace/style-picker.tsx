@@ -17,45 +17,17 @@ export default function StylePicker({
 }) {
   const allPresets = Object.keys(presets).filter((p) => p !== "random");
   const [isOpen, setOpen] = useState(false);
-  const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    allPresets.forEach((presetKey) => {
-      fetch(`/api/image?fileName=${presets[presetKey].thumbnail}`)
-        .then((response) => response.blob())
-        .then((blob) => {
-          const url = URL.createObjectURL(blob);
-          setImageUrls((prevUrls) => ({ ...prevUrls, [presetKey]: url }));
-        })
-        .catch((error) => {
-          console.error(
-            "There has been a problem with your fetch operation:",
-            error
-          );
-        });
-    });
-  }, []);
 
   function Preset({
     presetKey,
     draftPreset,
     setDraftPreset,
-    imageUrl,
   }: {
     presetKey: string;
     draftPreset: PresetName;
     setDraftPreset: (preset: PresetName) => void;
-    imageUrl: string;
   }) {
     const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-      if (imageUrl) {
-        const img = new Image();
-        img.src = imageUrl;
-        img.onload = () => setLoaded(true);
-      }
-    }, [imageUrl]);
 
     return (
       <div
@@ -71,7 +43,7 @@ export default function StylePicker({
               ? "brightness-50"
               : "transition-all duration-300 group-hover:brightness-50"
           }`}
-          src={imageUrl!}
+          src={`/api/image?fileName=${presets[presetKey].thumbnail}`}
           onLoad={() => setLoaded(true)}
           style={{ display: loaded ? "block" : "none" }}
         />
@@ -108,7 +80,6 @@ export default function StylePicker({
             presetKey={presetKey}
             draftPreset={draftPreset}
             setDraftPreset={setDraftPreset}
-            imageUrl={imageUrls[presetKey]}
           />
         ))}
       </div>

@@ -21,7 +21,8 @@ export function Page({ page }: { page: number }) {
   const pageRef = useRef<HTMLDivElement>(null);
   let url = "";
   if (typeof window !== "undefined") {
-    url = window.location.href;
+    const t = new URL(window.location.href);
+    url = t.pathname.split("/").pop() || "";
   }
 
   useEffect(() => {

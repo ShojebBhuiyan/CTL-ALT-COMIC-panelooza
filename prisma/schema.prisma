@@ -81,6 +81,7 @@ model Project {
 
 model RenderedScene {
   id            String         @id @default(cuid())
+  renderId      String
   status        String
   assetUrl      String
   alt           String

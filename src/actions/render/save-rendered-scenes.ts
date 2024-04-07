@@ -28,13 +28,12 @@ export async function saveRenderedScenes(
         alt: scene.alt,
         error: scene.error,
         maskUrl: scene.maskUrl,
-        segments: [],
-        projectId,
-        project: {
-          connect: {
-            id: projectId,
-          },
-        },
+        projectId: projectId,
+        // project: {
+        //   connect: {
+        //     id: projectId,
+        //   },
+        // },
       })),
     });
 
