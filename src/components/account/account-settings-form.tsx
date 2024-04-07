@@ -1,13 +1,6 @@
 "use client";
 
-import { Input } from "../ui/input";
-import { useTransition } from "react";
-import { Button } from "../ui/button";
-import { useToast } from "../ui/use-toast";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { AccountSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { updateUser } from "@/actions/user/update-user";
 import {
   Form,
   FormControl,
@@ -16,10 +9,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { SettingsCardWrapper } from "./settings-card-wrapper";
-import { updateUser } from "@/actions/user/update-user";
+import { AccountSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
+import { SettingsCardWrapper } from "./settings-card-wrapper";
 
 interface AccountSettingsProps {
   id: string;

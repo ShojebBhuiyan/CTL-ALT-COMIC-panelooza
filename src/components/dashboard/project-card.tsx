@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteSelectedProject } from "@/actions/project/delete-selected-project";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +13,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@prisma/client";
 import Link from "next/link";
 import { useToast } from "../ui/use-toast";
-import { deleteSelectedProject } from "@/actions/project/delete-selected-project";
 
 interface ProjectCardProps {
   project: Project;

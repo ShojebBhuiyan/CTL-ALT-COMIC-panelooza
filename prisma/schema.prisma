@@ -42,32 +42,66 @@ model User {
   password      String?
   accounts      Account[]
   styles        Style[]
-  Projects      Project[]
+  projects      Project[]
 }
 
 model Style {
-  id         String   @id @default(cuid())
-  name       String
-  userId     String
-  imagePaths String[]
-  thumbnail  String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id             String   @id @default(cuid())
+  userId         String
+  thumbnail      String
+  label          String
+  family         String?
+  color          String?
+  llmPrompt      String?
+  imagePrompt    String[]
+  negativePrompt String[]
+  isDefault      Boolean  @default(true)
+  imagePaths     String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id])
+
+  @@unique([label, userId])
+}
+
+model Project {
+  id             String          @id @default(cuid())
+  userId         String
+  name           String
+  description    String?
+  thumbnail      String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  renderedScenes RenderedScene[]
+  user           User            @relation(fields: [userId], references: [id])
 
   @@unique([name, userId])
 }
 
-model Project {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  userId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model RenderedScene {
+  id            String         @id @default(cuid())
+  renderId      String
+  status        String
+  assetUrl      String
+  alt           String
+  error         String
+  maskUrl       String
+  imageSegments ImageSegment[]
+  project       Project        @relation(fields: [projectId], references: [id])
+  projectId     String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
 
-  user User @relation(fields: [userId], references: [id])
-
-  @@unique([name, userId])
+model ImageSegment {
+  id              String        @id @default(cuid())
+  box             Float[]
+  color           Float[]
+  label           String
+  score           Float[]
+  renderedScene   RenderedScene @relation(fields: [renderedSceneId], references: [id])
+  renderedSceneId String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }

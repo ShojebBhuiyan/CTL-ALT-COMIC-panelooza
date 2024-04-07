@@ -7,33 +7,33 @@ export function Motivation() {
   const { activeCard } = useContext(ActiveCardContext);
 
   return (
-    <div className="px-16 py-10 h-[100vh]">
+    <div className="p-16 h-[100vh]">
       <div
         className={
           activeCard === 1
-            ? "h-full flex flex-col items-center justify-center"
+            ? "h-full flex flex-col items-center justify-between"
             : "hidden"
         }
       >
-        <p className="font-syne font-bold text-4xl mt-4 mb-auto">
+        <p className="font-syne font-bold text-[3vw]">
           Why Use Panelooza?
         </p>
-        <div className="flex flex-col space-y-5">
-          <div className="text-xl">
+        <div className="flex flex-col">
+          <div className="text-[1.5vw]">
             <p className="font-bold">1. Fast and Efficient Storyboarding</p>
             <p>
               Got a deadline coming up? Our AI can help you speed up the
               storyboarding process, making it faster and more efficient.
             </p>
           </div>
-          <div className="text-xl">
+          <div className="text-[1.5vw]">
             <p className="font-bold">2. Get Inspired</p>
             <p>
               Experiencing a creative block? Get inspiration from our community
               gallery and see what others are creating.
             </p>
           </div>
-          <div className="text-xl">
+          <div className="text-[1.5vw]">
             <p className="font-bold">3. Save Money</p>
             <p>
               Broke after paying for background artists? Our AI can generate
@@ -42,10 +42,10 @@ export function Motivation() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <p className="text-2xl font-bold">
+          <p className="text-[2vw] font-bold ">
             Dont be a sad mangaka. Try our AI Comic Strip Generator today!
           </p>
-          <img src="images/sad.png" alt="comic strip" className="h-32 w-32" />
+          <img src="images/sad.png" alt="comic strip" className="w-[10vw] absolute right-4 bottom-4" />
         </div>
       </div>
     </div>

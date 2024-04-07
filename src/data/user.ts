@@ -63,6 +63,23 @@ export async function updateUsername(id: string, username: string) {
   }
 }
 
+export async function updateImage(id: string, image: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        image,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function updateEmail(id: string, email: string) {
   try {
     const user = await db.user.update({

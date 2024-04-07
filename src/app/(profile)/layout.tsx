@@ -1,7 +1,7 @@
 "use client";
 
-import Sidebar from "@/components/dashboard/sidebar";
 import { ActiveMenuContext } from "@/components/dashboard/ActiveMenuContext";
+import Sidebar from "@/components/dashboard/sidebar";
 import { useState } from "react";
 
 export default function Layout({

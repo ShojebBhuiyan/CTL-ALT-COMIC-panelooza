@@ -19,23 +19,23 @@ export function Review() {
   }, []);
 
   return (
-    <div className="px-16 py-10 h-[100vh] text-black">
+    <div className="p-16 h-[100vh]">
       <div
         className={
           activeCard === 5
-            ? "h-full flex flex-col items-center justify-center"
+            ? "h-full flex flex-col items-center justify-between"
             : "hidden"
         }
       >
-        <p className="font-syne font-bold text-4xl mt-2">
+        <p className="font-syne font-bold text-[3vw] text-black">
           What artists saying about us
         </p>
-        <div className="relative flex items-center justify-center mt-10">
-          <img src="images/bubbles.svg" alt="speech-bubbles" className="h-96" />
+        <div className="relative flex items-center justify-center text-black mt-5">
+          <img src="images/bubbles.svg" alt="speech-bubbles" className="h-[70vh]" />
           {selectedReviews.map((review, index) => (
             <div
               key={index}
-              className="absolute p-2 text-center text-xs"
+              className="absolute p-2 text-center text-[1vw]"
               style={{ top: positions[index].top, left: positions[index].left }}
             >
               <p className="font-bold">{review.user}</p>
@@ -49,16 +49,16 @@ export function Review() {
 }
 
 const positions = [
-  { top: "98px", left: "24px" },
-  { top: "144px", left: "208px" },
-  { top: "158px", left: "406px" },
-  { top: "28px", left: "434px" },
-  { top: "168px", left: "634px" },
-  { top: "20px", left: "774px" },
-  { top: "268px", left: "40px" },
-  { top: "308px", left: "264px" },
-  { top: "298px", left: "494px" },
-  { top: "298px", left: "754px" },
+  { top: "28%", left: "5%" },
+  { top: "11%", left: "46%" },
+  { top: "8%", left: "83%" },
+  { top: "40%", left: "23%" },
+  { top: "40%", left: "47%" },
+  { top: "43%", left: "67%" },
+  { top: "70%", left: "3%" },
+  { top: "77%", left: "25%" },
+  { top: "75%", left: "53%" },
+  { top: "75%", left: "80%" },
 ];
 
 const reviews = [
