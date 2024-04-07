@@ -22,7 +22,7 @@ export const Header = () => {
           ]}
         />
         <p className="text-xl mb-8">
-          na use korle kharap hobe na, kintu korle valo hobe
+          For all your comic generting needs.
         </p>
         <div className="flex items-center justify-center px-36">
           <button className="w-full bg-blue py-2 px-4 drop-shadow-[3px_3px_0px_rgba(255,255,255,1)]">
