@@ -8,19 +8,20 @@ export function Slideshow() {
   const { activeCard } = useContext(ActiveCardContext);
 
   return (
-    <div className="px-16 py-10 bg-white h-[100vh]">
+    <div className="p-16 h-[100vh] bg-white">
       <div
         className={
           activeCard === 2
-            ? "h-full flex flex-col antialiased items-center justify-center relative"
+            ? "h-full flex flex-col items-center justify-between"
             : "hidden"
         }
       >
-        <p className="font-syne font-bold text-black text-4xl mt-2 mb-16">
+        <p className="font-syne font-bold text-[3vw] text-black">
           Many styles to choose from
         </p>
-        <InfiniteMovingCards direction="right" speed="normal" />
-      </div>
+        {/* <div className="bg-red h-full flex items-center"> */}
+        <InfiniteMovingCards direction="right" speed="normal" /></div>
+      {/* </div> */}
     </div>
   );
 }

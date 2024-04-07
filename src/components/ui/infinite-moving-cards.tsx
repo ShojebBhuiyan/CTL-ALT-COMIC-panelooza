@@ -15,25 +15,6 @@ export const InfiniteMovingCards = ({
   pauseOnHover?: boolean;
   className?: string;
 }) => {
-  const [imageUrls, setImageUrls] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    nonRandomPresets.forEach((presetKey) => {
-      fetch(`/api/image?fileName=${presets[presetKey].thumbnail}`)
-        .then((response) => response.blob())
-        .then((blob) => {
-          const url = URL.createObjectURL(blob);
-          setImageUrls((prevUrls) => ({ ...prevUrls, [presetKey]: url }));
-        })
-        .catch((error) => {
-          console.error(
-            "There has been a problem with your fetch operation:",
-            error
-          );
-        });
-    });
-  }, []);
-
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
   const colors = [
@@ -110,7 +91,7 @@ export const InfiniteMovingCards = ({
       >
         {nonRandomPresets.map((item, idx) => (
           <li
-            className="w-64  relative px-8 py-6 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]"
+            className="w-[18vw] relative px-8 py-6 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]"
             style={{
               background: colors[idx % colors.length],
               padding: "10px",
@@ -120,9 +101,9 @@ export const InfiniteMovingCards = ({
           >
             <div className=" p-2">
               <img
-                src={imageUrls[item]}
+                src={`/api/image?fileName=${presets[item].thumbnail}`}
                 alt={presets[item].label}
-                className="w-64 h-64 object-cover"
+                className="w-[18vw] h-[33vh] object-cover"
               />
               <p className="mt-6 font-bold text-white text-center">
                 {presets[item].label}

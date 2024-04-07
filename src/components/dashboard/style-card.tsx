@@ -16,7 +16,7 @@ export default function StyleCard({ style }: StyleCardProps) {
     <li className="flex items-center justify-between w-full h-fit p-5 rounded-none border-2 bg-white text-black">
       <div className="flex items-center">
         <img
-          src={style.thumbnail}
+          src={`/api/image?fileName=${style.thumbnail}`}
           alt={style.label}
           className="w-16 h-16 object-cover"
         />
