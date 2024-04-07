@@ -11,19 +11,8 @@ export async function getInitialRenderedScene(projectId: string) {
       },
     });
 
-    if (scenes.length !== 0) return scenes;
-    else
-      return [
-        {
-          renderId: "",
-          status: "pending",
-          assetUrl: "",
-          alt: "",
-          error: "",
-          maskUrl: "",
-          segments: [],
-        },
-      ];
+    return scenes;
+
   } catch (error) {
     console.error("Couldn't get initial rendered scene", error);
   }
