@@ -9,13 +9,14 @@ export const predictStyle = async ({
   const query = `
 Generate a DALL·E 3 prompt to get a comic panel of the same art style as the given image. 
 Please make sure the prompt includes info about art style like comic family [American/Japanese/etc.], color [color/grayscale], 
-llmPrompt [japanese manga/Franco-Belgian comic/Nihonga/etc], imagePrompt [any 5 information - stroke weight, stroke style, color palette and all other intricate details of the drawing technique], negativePrompt [any 5 information] to reproduce another drawing in the same style. 
+llmPrompt [japanese manga/Franco-Belgian comic/Nihonga/etc], imagePrompt [any 5 information - important details like similar to Van Gogh art style or art style of Attack On Titan etc, stroke weight, stroke style, color palette and all other intricate details of the drawing technique], negativePrompt [optional] to reproduce another drawing in the same style. 
 Give your response as a VALID JSON with these 5 fields like this example: 
 {
   family: "european",
   color: "color",
   llmPrompt: "new pulp science fiction",
   imagePrompt: [
+    "similar to some art style",
     "stroke weight: ",
     "color palette: ",
     "linework: ",
@@ -34,7 +35,8 @@ Give your response as a VALID JSON with these 5 fields like this example:
 Remember, only the drawing style is important. The subject of the image is not. 
 So don't give any reference of the contents of the given image. 
 And don't add your own comments. 
-Reply using valid JSON!! Important: Write valid JSON! Don't write anything about the subject of the image!
+Reply using valid JSON!! 
+Important: Write valid JSON! Don't write anything about the subject of the image! Give only 5 information in the imagePrompt and negativePrompt.
 `;
 
   try {
