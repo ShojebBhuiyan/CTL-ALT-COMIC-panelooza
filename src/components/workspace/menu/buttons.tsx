@@ -57,9 +57,9 @@ export function Buttons() {
       <button className="bg-black hover:bg-gray-700 text-white px-4 py-2" onClick={saveWorkspace}>
         Save
       </button>
-      <button className="bg-black hover:bg-gray-700 text-white px-4 py-2" onClick={exportImage}>
+      {/* <button className="bg-black hover:bg-gray-700 text-white px-4 py-2" onClick={exportImage}>
         Export
-      </button>
+      </button> */}
       <button
         className="bg-black hover:bg-gray-700 text-white px-4 py-2"
         onClick={() => window.print()}

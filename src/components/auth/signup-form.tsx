@@ -147,6 +147,27 @@ export function SignupForm() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    className="bg-white text-black font-medium border-none focus:ring-0"
+                    placeholder="use same password as above"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Re-enter your password.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="flex items-center justify-center p-5">
             <Button
               type="submit"
