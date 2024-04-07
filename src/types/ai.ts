@@ -149,6 +149,7 @@ export type GetAppPostResponse = {
 };
 
 export type LayoutProps = {
+  projectId: string;
   page: number;
   nbPanels: number;
 };

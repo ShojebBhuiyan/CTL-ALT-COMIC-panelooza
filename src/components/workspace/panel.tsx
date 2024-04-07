@@ -8,7 +8,6 @@ import { RenderedScene, RenderingModelVendor } from "@/types/ai";
 import { useStore } from "@/components/render/store";
 
 import { Progress } from "@/components/workspace/progress";
-import { getInitialRenderedScene } from "@/lib/getInitialRenderedScene";
 import { cn } from "@/lib/utils";
 import { useLocalStorage } from "usehooks-ts";
 import { Bubble } from "./bubble";
@@ -16,15 +15,11 @@ import { localStorageKeys } from "@/constants/localStorageKeys";
 import { defaultSettings } from "@/constants/default-settings";
 import { getRender, newRender } from "@/actions/render/render";
 import { EditModal } from "./edit-modal";
+import { getInitialRenderedScene } from "@/actions/render/get-initial-rendered-scene";
+import { initialRenderData } from "@/constants/initial-render-data";
 
-export function Panel({
-  page,
-  nbPanels,
-  panel,
-  className = "",
-  width = 1,
-  height = 1,
-}: {
+interface PanelProps {
+  savedUrl?: string;
   page: number;
   nbPanels: number;
   panel: number;
@@ -32,7 +27,17 @@ export function Panel({
   className?: string;
   width?: number;
   height?: number;
-}) {
+}
+
+export function Panel({
+  savedUrl,
+  page,
+  nbPanels,
+  panel,
+  className = "",
+  width = 1,
+  height = 1,
+}: PanelProps) {
   const panelIndex = page * nbPanels + panel;
   const panelId = `${panelIndex}`;
   const [mouseOver, setMouseOver] = useState(false);
@@ -58,7 +63,9 @@ export function Panel({
   const renderedScenes = useStore((state) => state.renderedScenes);
   const setRendered = useStore((state) => state.setRendered);
 
-  const rendered = renderedScenes[panelIndex] || getInitialRenderedScene();
+  const rendered = renderedScenes[panelIndex] || initialRenderData;
+
+  console.log("rendered", rendered);
 
   const [revision, setRevision] = useState(0);
 
@@ -101,7 +108,7 @@ export function Panel({
     }
 
     setGeneratingImages(panelId, true);
-    setRendered(panelId, getInitialRenderedScene());
+    setRendered(panelId, initialRenderData);
 
     setTimeout(
       () => {
@@ -257,12 +264,12 @@ export function Panel({
     zoomLevel > 140
       ? `border-[2px] md:border-[4px] rounded-sm md:rounded-md`
       : zoomLevel > 120
-      ? `border-[1.5px] md:border-[3px] rounded-xs md:rounded-sm`
-      : zoomLevel > 90
-      ? `border-[1px] md:border-[2px] rounded-xs md:rounded-sm`
-      : zoomLevel > 40
-      ? `border-[0.5px] md:border-[1px] rounded-none md:rounded-xs`
-      : `border-transparent md:border-[0.5px] rounded-none md:rounded-none`,
+        ? `border-[1.5px] md:border-[3px] rounded-xs md:rounded-sm`
+        : zoomLevel > 90
+          ? `border-[1px] md:border-[2px] rounded-xs md:rounded-sm`
+          : zoomLevel > 40
+            ? `border-[0.5px] md:border-[1px] rounded-none md:rounded-xs`
+            : `border-transparent md:border-[0.5px] rounded-none md:rounded-none`,
     `shadow-sm`,
     `overflow-hidden`,
     `print:border-[1.5px] print:shadow-none`
@@ -360,10 +367,10 @@ export function Panel({
         </EditModal>
       </div>
 
-      {rendered.assetUrl && (
+      {(rendered.assetUrl || !!savedUrl) && (
         <img
           ref={ref}
-          src={rendered.assetUrl}
+          src={rendered.assetUrl.length > 0 ? rendered.assetUrl : savedUrl}
           width={width}
           height={height}
           alt={rendered.alt}

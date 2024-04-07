@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ResizableHandle,
   ResizablePanel,
@@ -8,14 +6,18 @@ import {
 import { pick } from "@/lib/pick";
 import { Panel } from "../panel";
 import { LayoutProps } from "@/types/ai";
+import { getInitialRenderedScene } from "@/actions/render/get-initial-rendered-scene";
 
-export function Layout0({ page, nbPanels }: LayoutProps) {
+export async function Layout0({ projectId, page, nbPanels }: LayoutProps) {
+  const scenses = await getInitialRenderedScene(projectId);
+
   return (
     <ResizablePanelGroup direction="vertical" className="border">
       <ResizablePanel defaultSize={50}>
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={50}>
             <Panel
+              savedUrl={scenses?.at(0)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={0}
@@ -26,6 +28,7 @@ export function Layout0({ page, nbPanels }: LayoutProps) {
           <ResizableHandle />
           <ResizablePanel defaultSize={50}>
             <Panel
+              savedUrl={scenses?.at(1)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={1}
@@ -40,6 +43,7 @@ export function Layout0({ page, nbPanels }: LayoutProps) {
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={50}>
             <Panel
+              savedUrl={scenses?.at(2)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={2}
@@ -50,6 +54,7 @@ export function Layout0({ page, nbPanels }: LayoutProps) {
           <ResizableHandle />
           <ResizablePanel defaultSize={50}>
             <Panel
+              savedUrl={scenses?.at(3)?.assetUrl}
               page={page}
               nbPanels={nbPanels}
               panel={3}

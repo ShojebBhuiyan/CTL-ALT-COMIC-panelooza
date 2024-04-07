@@ -1,6 +1,6 @@
 import { RenderedScene } from "@/types/ai";
 
-export const getInitialRenderedScene = (): RenderedScene => ({
+export const initialRenderData: RenderedScene = {
   renderId: "",
   status: "pending",
   assetUrl: "",
@@ -8,4 +8,4 @@ export const getInitialRenderedScene = (): RenderedScene => ({
   error: "",
   maskUrl: "",
   segments: [],
-});
+};

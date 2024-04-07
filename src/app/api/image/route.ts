@@ -1,17 +1,8 @@
-import { GetObjectCommand, PutObjectCommand, S3 } from "@aws-sdk/client-s3";
+import { s3Client } from "@/lib/s3client";
+import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { File } from "buffer";
 import { NextRequest, NextResponse } from "next/server";
 import { Readable } from "stream";
-
-const s3Client = new S3({
-  forcePathStyle: false,
-  endpoint: process.env.SPACES_ENDPOINT!,
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: process.env.SPACES_KEY!,
-    secretAccessKey: process.env.SPACES_SECRET!,
-  },
-});
 
 export async function POST(req: Request) {
   try {
@@ -35,6 +26,7 @@ export async function POST(req: Request) {
         Body: Buffer.from(buffer),
       })
     );
+
     return NextResponse.json({ message: "success", filename: timestamp });
   } catch (reason) {
     console.log(reason);
