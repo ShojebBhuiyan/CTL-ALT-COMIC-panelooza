@@ -2,14 +2,9 @@
 
 import { PresetName } from "@/constants/presets";
 import { useStore } from "@/components/render/store";
-import {
-  LayoutName,
-  defaultLayout,
-} from "@/components/workspace/layouts/layout-0";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -24,8 +19,6 @@ export function Prompt({
 }) {
   const preset = useStore((state) => state.preset);
   const prompt = useStore((state) => state.prompt);
-  const layout = useStore((state) => state.layout);
-  const setLayout = useStore((state) => state.setLayout);
   const generate = useStore((state) => state.generate);
 
   const isGeneratingStory = useStore((state) => state.isGeneratingStory);
@@ -44,15 +37,9 @@ export function Prompt({
     ""
   );
 
-  const searchParams = useSearchParams();
-  const requestedLayout =
-    (searchParams?.get("layout") as LayoutName) || defaultLayout;
-
   const [draftPromptA, setDraftPromptA] = useState(lastDraftPromptA);
   const [draftPromptB, setDraftPromptB] = useState(lastDraftPromptB);
   const draftPrompt = `${draftPromptA}||${draftPromptB}`;
-
-  const [draftLayout, setDraftLayout] = useState<LayoutName>(requestedLayout);
 
   useEffect(() => {
     if (lastDraftPromptA !== draftPromptA) {
@@ -78,18 +65,10 @@ export function Prompt({
   const handleSubmit = () => {
     const promptChanged = draftPrompt.trim() !== prompt.trim();
     const presetChanged = draftPreset !== preset.id;
-    const layoutChanged = draftLayout !== layout;
-    if (!isBusy && (promptChanged || presetChanged || layoutChanged)) {
-      generate(draftPrompt, draftPreset, draftLayout);
+    if (!isBusy && (promptChanged || presetChanged)) {
+      generate(draftPrompt, draftPreset);
     }
   };
-
-  useEffect(() => {
-    const layoutChanged = draftLayout !== layout;
-    if (layoutChanged && !isBusy) {
-      setLayout(draftLayout);
-    }
-  }, [layout, draftLayout, isBusy]);
 
   return (
     <div className="flex flex-row flex-grow w-full">

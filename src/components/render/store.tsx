@@ -11,11 +11,6 @@ import {
   getRandomPreset,
 } from "@/constants/presets";
 import { RenderedScene } from "@/types/ai";
-import {
-  LayoutName,
-  defaultLayout,
-  getRandomLayoutName,
-} from "../workspace/layouts/layout-0";
 
 export const useStore = create<{
   prompt: string;
@@ -31,8 +26,6 @@ export const useStore = create<{
   upscaleQueue: Record<string, RenderedScene>;
   showCaptions: boolean;
   renderedScenes: Record<string, RenderedScene>;
-  layout: LayoutName;
-  layouts: LayoutName[];
   zoomLevel: number;
   page: HTMLDivElement;
   isGeneratingStory: boolean;
@@ -55,8 +48,6 @@ export const useStore = create<{
   setPanels: (panels: string[]) => void;
   setPanelPrompt: (newPrompt: string, index: number) => void;
   setShowCaptions: (showCaptions: boolean) => void;
-  setLayout: (layout: LayoutName) => void;
-  setLayouts: (layouts: LayoutName[]) => void;
   setCaptions: (captions: string[]) => void;
   setPanelCaption: (newCaption: string, index: number) => void;
   setZoomLevel: (zoomLevel: number) => void;
@@ -68,8 +59,7 @@ export const useStore = create<{
   download: () => Promise<void>;
   generate: (
     prompt: string,
-    presetName: PresetName,
-    layoutName: LayoutName
+    presetName: PresetName
   ) => void;
 }>((set, get) => ({
   prompt: "",
@@ -88,8 +78,6 @@ export const useStore = create<{
   upscaleQueue: {} as Record<string, RenderedScene>,
   renderedScenes: {} as Record<string, RenderedScene>,
   showCaptions: false,
-  layout: defaultLayout,
-  layouts: [defaultLayout, defaultLayout],
   zoomLevel: 60,
   page: undefined as unknown as HTMLDivElement,
   isGeneratingStory: false,
@@ -202,24 +190,6 @@ export const useStore = create<{
       captions: captions.map((c, i) => (index === i ? newCaption : c)),
     });
   },
-  setLayout: (layoutName: LayoutName) => {
-    const { currentNbPages } = get();
-
-    const layout = layoutName === "random" ? getRandomLayoutName() : layoutName;
-
-    const layouts: LayoutName[] = [];
-    for (let i = 0; i < currentNbPages; i++) {
-      layouts.push(
-        layoutName === "random" ? getRandomLayoutName() : layoutName
-      );
-    }
-
-    set({
-      layout,
-      layouts,
-    });
-  },
-  setLayouts: (layouts: LayoutName[]) => set({ layouts }),
   setZoomLevel: (zoomLevel: number) => set({ zoomLevel }),
   setPage: (page: HTMLDivElement) => {
     if (!page) {
@@ -274,19 +244,9 @@ export const useStore = create<{
   },
   generate: (
     prompt: string,
-    presetName: PresetName,
-    layoutName: LayoutName
+    presetName: PresetName
   ) => {
     const { currentNbPages } = get();
-
-    const layout = layoutName === "random" ? getRandomLayoutName() : layoutName;
-
-    const layouts: LayoutName[] = [];
-    for (let i = 0; i < currentNbPages; i++) {
-      layouts.push(
-        layoutName === "random" ? getRandomLayoutName() : layoutName
-      );
-    }
 
     set({
       prompt,
@@ -294,8 +254,6 @@ export const useStore = create<{
       captions: [],
       preset:
         presetName === "random" ? getRandomPreset() : getPreset(presetName),
-      layout,
-      layouts,
     });
   },
 }));

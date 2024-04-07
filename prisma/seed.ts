@@ -94,7 +94,6 @@ async function main() {
   }
 
   const allStyles = await prisma.style.findMany();
-  console.log(allStyles);
 }
 
 main()

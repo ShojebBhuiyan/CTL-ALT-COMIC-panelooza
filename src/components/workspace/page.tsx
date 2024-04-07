@@ -4,31 +4,25 @@ import { useEffect, useRef } from "react";
 
 import { useStore } from "@/components/render/store";
 import {
-  allLayoutAspectRatios,
-  allLayouts,
+  Layout0,
 } from "@/components/workspace/layouts/layout-0";
 import { cn } from "@/lib/utils";
 
 export function Page({ page }: { page: number }) {
   const zoomLevel = useStore((state) => state.zoomLevel);
-  const layouts = useStore((state) => state.layouts);
 
-  const layout = layouts[page];
-
-  const LayoutElement = (allLayouts as any)[layout];
-  const aspectRatio =
-    ((allLayoutAspectRatios as any)[layout] as string) || "aspect-[250/297]";
+  const LayoutElement = Layout0;
+  const aspectRatio =  "aspect-[250/297]";
 
   const currentNbPages = useStore((s) => s.currentNbPages);
   const currentNbPanelsPerPage = useStore((s) => s.currentNbPanelsPerPage);
-  const allLayoutsNbPanels = {
-    Layout0: currentNbPanelsPerPage,
-  };
-
-  const currentNbPanels =
-    ((allLayoutsNbPanels as any)[layout] as number) || currentNbPanelsPerPage;
+  const currentNbPanels = currentNbPanelsPerPage;
   const setPage = useStore((state) => state.setPage);
   const pageRef = useRef<HTMLDivElement>(null);
+  let url = "";
+  if (typeof window !== "undefined") {
+    url = window.location.href;
+  }
 
   useEffect(() => {
     const element = pageRef.current;
@@ -65,7 +59,7 @@ export function Page({ page }: { page: number }) {
           padding: `${Math.round((zoomLevel / 100) * 16)}px`,
         }}
       >
-        <LayoutElement page={page} nbPanels={currentNbPanels} />
+        <LayoutElement projectId={url} page={page} nbPanels={currentNbPanels} />
       </div>
       {currentNbPages > 1 && (
         <p className="w-full text-center pt-4 font-sans text-2xs font-semibold text-stone-600">

@@ -65,7 +65,6 @@ export function Panel({
 
   const rendered = renderedScenes[panelIndex] || initialRenderData;
 
-  console.log("rendered", rendered);
 
   const [revision, setRevision] = useState(0);
 
